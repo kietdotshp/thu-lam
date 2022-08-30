@@ -68,7 +68,7 @@
 
 body {
 	background-color: #F0F8FF;
-	text-align: center;
+	/* text-align: center; */
 	overflow: auto;
 	font-size: 9.0pt;
 	font-family: calibri, Arial, Helvetica;
