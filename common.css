@@ -1,0 +1,144 @@
+@CHARSET "UTF-8";
+
+.page_body {
+	color: #000000;
+}
+
+.logout {
+	font-size: 9pt;
+	font-weight: bold;
+	color: #ff0000;
+	text-align: right;
+}
+
+.status_label {
+	color: #ffffff;
+}
+
+div#page {
+	position: relative;
+	width: 600.00pt;
+	height: 475.00pt;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1.00pt solid #000000;
+	background-color: #FAFAFA;
+}
+
+span#page_box {
+	/* 	background: transparent url(images/ccat004007.jpg) no-repeat top left; */
+	position: absolute;
+	left: 12.75pt;
+	top: 9.00pt;
+	width: 574.50pt;
+	height: 465.00pt;
+	/* 	border: 1.00pt solid #000000; */
+}
+
+div#header_box { /* 	background-image: url(images/ccat001003.jpg); */
+	background-color: #FFFFCC;
+	position: absolute;
+	/* 	left: 20.25pt; */
+	/* 	top: 15.00pt; */
+	/* 	width: 559.50pt; */
+	width: 100%;
+	height: 70.00pt;
+	border-bottom: 1px solid grey;
+}
+
+h1#page_tag {
+	color: #404040;
+	font: bold 16pt 'Arial', Helvetica, sans-serif;
+	text-align: center;
+	color: #084B8A;
+}
+
+h2#page_tag {
+	color: #404040;
+	font-size: 12pt;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+div#navigation_box {
+	/* 	background-image: url(images/ccat001004.jpg); */
+	position: absolute;
+	left: 20.25pt;
+	top: 75.00pt;
+	width: 559.50pt;
+	height: 26.25pt;
+}
+
+div#full_page_body {
+	position: absolute;
+	left: 20.00pt;
+	right: 20.00pt;
+	top: 100.00pt;
+	text-align: center;
+	/* 		border: 1.00pt solid #000000; */
+}
+
+div#required {
+	position: absolute;
+	left: 20.00pt;
+	top: 455.00pt;
+	color: #ff0000;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+div#required_up {
+	position: absolute;
+	left: 20.00pt;
+	bottom: 20.00pt;
+	color: #ff0000;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+div#home_link {
+	position: absolute;
+	text-align: right;
+	right: 20.00pt;
+	top: 455.00pt;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+#footer {
+	position: fixed;
+	left: 0px;
+	width: 100%;
+	color: black;
+	text-align: center;
+	background: lightgrey;
+	font-size: 9pt;
+	bottom: 0;
+	padding: 5px;
+	border: 1px solid grey;
+}
+
+div#copyright {
+	position: absolute;
+	left: 0pt;
+	right: 0pt;
+	text-align: center;
+	bottom: 0pt;
+	font-size: 8pt;
+	font-weight: bold;
+	padding: 5px;
+	border-top: 1px solid grey;
+	background: #E9EEF4;
+}
+
+table#login_table {
+	text-align: left;
+	border: 1px solid #444444;
+	padding-left: 60pt;
+	padding-right: 60pt;
+	padding-top: 20pt;
+	padding-bottom: 20pt;
+}

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async
+	src="https://www.googletagmanager.com/gtag/js?id=UA-110143695-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110143695-1');
+</script>
+<title>CASB-Error</title>
+
+<!-- off-canvas -->
+<link href="/CASB/css/mobile-menu.css" rel="stylesheet">
+<!-- font-awesome -->
+<link href="/CASB/css/font-awesome.min.css" rel="stylesheet">
+<!-- Flat Icon -->
+<link href="/CASB/fonts/flaticon/flaticon.css" rel="stylesheet">
+<!-- Bootstrap -->
+<link rel="stylesheet" href="/CASB/css/bootstrap.min.css">
+<!-- Style CSS -->
+<link href="/CASB/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/CASB/css/w3.css">
+<link rel="stylesheet" href="/CASB/css/customcss.css" type="text/css">
+<!--
+         Favicons
+         =============================================
+         -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/CASB/img/favicons/iaf-logo.png">
+	<style>
+	.navbar-default .navbar-nav > li {
+    margin-right: 0px;
+}
+	</style>
+</head>
+<body onload="display_ct();" class="error-bg">
+	<div id="main-wrapper">
+
+		<!-- Page Preloader -->
+		<div id="preloader">
+			<div id="status">
+				<div class="status-mes"></div>
+			</div>
+		</div>
+
+		<div class="uc-mobile-menu-pusher">
+
+			<div class="content-wrapper">
+				<!-- Header Top -->
+				<!-- <div class="header-top visible-md visible-lg">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<span id="ct"
+									style="color: white; font-size: 11px; float: left; width: 100%; height: auto; display: inline-block; padding-top: 2px;"></span>
+
+							</div>
+
+							<div class="col-sm-12 col-md-6">
+								<ul class="top-contact pull-right">
+									<li class="phone"><i class="fa fa-phone-square"
+										aria-hidden="true"></i> 011-2569-9606/4209</li>
+									<li class="email"><i class="fa fa-envelope"
+										aria-hidden="true"></i> casbiaf@cdac.in</li>
+
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+				 <div id="iafname" class="container-fluid  visible-lg visible-md"
+                  style="background: linear-gradient(#c8e5ff, #ffffff);">
+                  <div class="col-sm-8 col-md-8 ">
+                     <div class="navbar-header left-align left-padding"
+                        style="clear: both;">
+                        <a class="logo pull-left" href="index.html"><img
+                           src="img/iaf.png" style="height: 65px; margin-top: 5px;"></a>
+                       <span class="name pull-left">
+								<h4 class="txt"
+									style="color: #022261; text-weight: bold; margin-left: 15px; margin-top: 5px; font-weight: 700;">INDIAN AIR FORCE<br>भारतीय वायु सेना <!-- CENTRAL AIRMEN SELECTION BOARD --></h4>
+							</span> <!-- <br> --> 
+							
+                     </div>
+                  </div>
+                  
+                  <div class="col-sm-4 col-md-4 ">
+                     <div class="navbar-header right-align" style="margin-left: 0px;">
+                        <div>
+                           <a class="logo pull-right"
+                              href="https://careerindianairforce.cdac.in"><img
+                              src="img/logo/rsz_1iaf-logo.png" style="height: 61px; margin-top: 5px;"></a>
+                        <span class="name pull-right">
+									<h4 class="txt"
+										style="color: #022261; text-weight: bold; margin-right: 15px; margin-top: 5px; font-weight: 700;text-align: right;">AGNIVEERVAYU<br><span>अग्निवीरवायु</span></h4>
+								</span>
+								
+								<!--  <br> 
+								<span class="name pull-right">
+									<h4 class="txt"
+										style="color: #022261; text-weight: bold; margin-right: 15px; margin-top: 5px; font-weight: 700;">भारतीय
+										वायु सेना</h4>
+								</span> -->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+				<!-- .navbar-top -->
+				<nav class="navbar m-menu navbar-default"
+					style="border: 1px solid gray; padding-top: 2px; padding-bottom: 2px;">
+					<div class="container">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="row visible-xs medium-only" style="">
+							<div class="col-sm-6 col-xs-10 "
+								style="color: white; padding-top: 10px; padding-left: 0px; clear: both;">
+								<img style="display: inline; padding-left: 2px;" alt=""
+									src="/CASB/img/logo/rsz_1iaf-logo.png"> <b>IAF</b> - CASB <!-- <b>C</b>ENTRAL
+								<b>A</b>IRMEN <span class="margin-xs"><b>S</b>ELECTION</span><span
+									class="margin-xs1"> <b>B</b>OARD
+								</span> -->
+							</div>
+							<div class="col-sm-6 col-xs-2 " style="float: left;">
+								<div class="navbar-header ">
+									<button type="button" class="navbar-toggle collapsed"
+										data-toggle="collapse" data-target="#navbar-collapse-1">
+										<span class="sr-only">Toggle navigation</span> <span
+											class="icon-bar"></span> <span class="icon-bar"></span> <span
+											class="icon-bar"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="#navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-left main-nav">
+								<li class=""><a href="/CASB/index.html">Home</a></li>
+								<li style="color: white !important;"
+									class="dropdown dropdown-toggle "><a href="#"
+									data-toggle="dropdown">IAF <span><i
+											class="fa fa-angle-down"></i></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="/CASB/traininginstitution.html">Airmen
+												Training Institutes</a></li>
+										<li><a href="/CASB/gallantryAwards.html">Gallantry
+												Awards</a></li>
+									</ul></li>
+								<li class="dropdown dropdown-toggle "><a href="#"
+									data-toggle="dropdown">CASB <span><i
+											class="fa fa-angle-down"></i></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="/CASB/aboutcasb.html">About</a></li>
+										<li><a href="/CASB/president.html">CASB President</a></li>
+										<li><a href="/CASB/asc.html">Airmen
+												Selection Centres</a></li>
+									</ul></li>
+								<li class="dropdown dropdown-toggle "><a href="#"
+									data-toggle="dropdown">Airman <span><i
+											class="fa fa-angle-down"></i></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="/CASB/eligibilityCriteria.html">Eligibility
+												Criteria</a></li>
+										<li><a href="/CASB/trades_task.html">Trades and Tasks</a></li>
+										<li><a href="/CASB/rankstructure.html">Rank Structure</a></li>
+										<li><a href="/CASB/pay_perks.html">Pay and Perks</a></li>
+										<li><a href="/CASB/careerprogression.html">Career
+												Progression</a></li>
+									</ul></li>
+								<li class="dropdown dropdown-toggle"><a href="#"
+									data-toggle="dropdown">CANDIDATE <span><i
+											class="fa fa-angle-down"></i></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="/CASB/instructiononline.html">Guidelines
+												to fill up online application form</a></li>
+										<li><a href="/CASB/applyonline.html">Apply Online</a></li>
+										<li><a href="/CASB/applyonline.html">Login</a></li>
+										<li><a href="/CASB/modalqp.html">Syllabus and Model
+												Question Paper</a></li>
+										<!-- <li><a href="#">Mock Test</a></li>-->
+										<li><a href="/CASB/downloadforms.html">Download
+												Section</a></li>
+										<li><a href="/CASB/documentsbycandidates.html">Documents
+												to be brought by candidate for <br style="line-height: 1px;">&nbsp;&nbsp;Phase
+												&#8545; Exam at Airmen Selection Centres
+										</a></li>
+										<li><a href="/CASB/checklist.html">Checklist for
+												candidate appearing in Rally/ST</a></li>
+										<li><a href="/CASB/aisl.html">AISL/Enrolment List</a></li>
+									</ul></li>
+								<li><a href="/CASB/contact.html">Contact</a></li>
+								<li><a href="/CASB/faq.html">FAQ</a></li>
+								<li><a href="https://indianairforce.nic.in" target="_blank">Official Site</a></li>
+								<li class="active landing-margin"
+									style="display: inline-block; float: right;"><a
+									target="_blank" href="https://careerindianairforce.cdac.in"><i
+										class="fa fa-paper-plane-o"></i> IAF</a></li>
+							</ul>
+
+
+						</div>
+
+						<!-- .navbar-collapse -->
+					</div>
+					<!-- .container -->
+				</nav>
+				<!-- .nav -->
+				<!-- .nav -->
+				<!-- single-page-title single-page-title-contact-->
+
+				<!-- <section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+			<nav >
+				<ul class="breadcrumb modbreadcrumb">
+					<li> <a href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li></li>
+          <li>Airmen</li>
+					<li>Pay and Perks</li>
+				</ul>
+			</nav>
+
+            </div>
+        </div>
+    </div>
+</section> -->
+				<!-- .page-title -->
+				<!-- .page-title -->
+
+				<section class="error   ">
+					<div class="container margin-ipad "
+						style="margin-top: 5%; margin-bottom: 5%; height: 30vh;">
+						<div class="promo-content nohover " style="text-align: center;">
+							<h2 style="font-size: 90px; center; color: #3a4750;">SORRY!!!</h2>
+							<p style="text-align: center;">
+								The requested URL was not found on this server.<br />That is all
+								we know.<br> <br> <span
+									style="background-color: #3185ce; color: white; border: 2px solid #3185ce; padding: 5px 5px 5px 5px;">
+									<a href="/CASB/index.html"><span
+										class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Back to
+										Home</a>
+								</span>
+							</p>
+
+
+						</div>
+						<!-- <div class="col-xs-11 col-xs-offset-1 col-sm-4 col-sm-offset-3  col-md-3 col-md-offset-5 err-btn margin-lg"
+							style="text-align: center;padding-left: 55px;padding-right:0px;">
+							<a href="index.html" class="button grey"><span class="glyphicon glyphicon-home"></span>&nbsp;Back to Home</a>
+
+						</div>
+ -->
+					</div>
+				</section>
+
+
+
+
+
+
+				<div id="footerContent"></div>
+				<!-- .footer -->
+
+			</div>
+			<!-- .content-wrapper -->
+		</div>
+		<!-- .offcanvas-pusher -->
+
+		<div class="uc-mobile-menu uc-mobile-menu-effect">
+			<button type="button" class="close" aria-hidden="true"
+				data-toggle="offcanvas" id="uc-mobile-menu-close-btn">&times;</button>
+			<div>
+				<div>
+					<div id="headerMobile"></div>
+
+
+				</div>
+				<div class="container" style="position: fixed; bottom: 5px;">
+					<div class="row">
+						<div
+							class="col-md-12 col-sm-12 col-xs-12 col-xs-push-3 col-md-push-0 col-sm-push-1"
+							style="text-align: left;">
+							<img
+								style="height: 150px; text-align: center; padding-left: 25px;"
+								src="img/logo/rsz_1iaf-logo.png">
+						</div>
+						<p>
+							<span class="name pull-left"
+								style="text-weight: bold; padding-left: 30px; text-align: left; margin: 0px;">
+								<h5 style="color: #fff; padding-left: 45px; margin: 0px;text-align: center;">CASB<!-- Central Airmen Selection Board --></h5>
+								<h5 style="color: #fff; text-align: left; padding-left: 50px; margin: 0px;"><!-- केन्द्रीय वायु सैनिक चयन बोर्ड--></h5>
+							</span>
+						</p>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- .uc-mobile-menu -->
+
+
+	</div>
+	<!-- #main-wrapper -->
+
+
+
+	<!-- Script -->
+	<script src="/CASB/js/jquery-2.1.4.min.js"></script>
+	<script src="/CASB/js/bootstrap.min.js"></script>
+	<!-- <script src="js/smoothscroll.js"></script> -->
+	<script src="/CASB/js/mobile-menu.js"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js"></script> -->
+	<script src="/CASB/js/scripts.js"></script>
+	<script src="/CASB/js/customjs.js"></script>
+	<script> 
+    $(function(){
+      $("#footerContent").load("/CASB/footer.html"); 
+    });
+    </script>
+</body>
+</html>

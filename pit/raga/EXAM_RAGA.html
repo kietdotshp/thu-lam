@@ -1,0 +1,2644 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055) -->
+<html>
+<!-- Mirrored from agnipathvayu.cdac.in/AV/AVMock/XY/EXAM_RAGA.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Aug 2022 15:32:56 GMT -->
+<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<meta http-equiv="default-style" content="text/css;">
+<title>EXAM</title>
+
+
+
+
+
+<link rel="stylesheet" href="EXAM_RAGA_files/exam-common.css" type="text/css">
+<link rel="stylesheet" href="EXAM_RAGA_files/examination.css" type="text/css">
+
+<link rel="stylesheet" href="EXAM_RAGA_files/ui-dialog.css" type="text/css">
+<link rel="stylesheet" href="EXAM_RAGA_files/jquery-ui.css" type="text/css">
+
+<!-- <script src="/afrec-local/resources/js/jquery.min.js"></script> -->
+<script src="EXAM_RAGA_files/global.js"></script>
+<script src="EXAM_RAGA_files/uuid.js"></script>
+
+<script src="EXAM_RAGA_files/jquery-1.12.4.js" type="text/javascript"></script>
+<script src="EXAM_RAGA_files/jquery-ui.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var green = "#A9DFB2";
+var blue = "#A9BDDF";
+var red = "#DFA9B4";
+var selectedColor = red;//"#C0C0C0";
+var defaultColor = "#FFFFFF";
+var nocolor = "";
+
+// Two separate images in each TD: one is tick.png and another question.png
+// Visibility of these images is changed as per operation
+
+document.oncontextmenu = function() { return false; }
+document.ondragstart = function() { return false; }
+
+// Disable Backspace
+$(document).keydown(function(e) {
+	if (e.which == 8) {
+		e.preventDefault();
+	}
+});
+
+function getCsrfToken() {
+	return '&_csrf=e4a38010-9c42-4b0e-8314-9a3761f815bd';
+	// return '';
+}
+
+$(document).ready(function() {
+	var bodyheight_d = $(window).height();
+	$("#questionList").height(3 * bodyheight_d / 4);
+	$("#question").height(3 * bodyheight_d / 4);
+ 
+	$(window).resize(function() {
+		var bodyheight = $(window).height();
+        $("#questionList").height(3 * bodyheight_d / 4);
+  		$("#question").height(3 * bodyheight_d / 4);
+     });
+});
+     
+// IE
+$(document).ready(function() {
+	$('.questionDivStyle img').each(function() {
+		if ($(this)[0].complete) {
+			document.getElementById("allImagesLoaded").value = "YES";
+		} else {
+			document.getElementById("allImagesLoaded").value = "NO";
+		}
+	});
+});
+       
+// Firefox
+$(document).ready(function() {
+	$('.questionDivStyle img').load(function() {
+		document.getElementById("allImagesLoaded").value = "YES";
+    });
+});
+
+// IE9,10
+$(window).load(function() {
+	document.getElementById("allImagesLoaded").value = "YES";
+});
+
+function colorFirstTd() {
+	var elements = document.getElementById('questionListTable').getElementsByTagName('td');
+	
+	if(document.all) {
+	  	elements[0].bgColor = selectedColor;
+	} else {
+	    elements[0].bgColor = selectedColor;
+	}
+}
+
+function colorIndexedTd(index) {
+	var elements = document.getElementById('questionListTable').getElementsByTagName('td');
+
+	for(var i = 0, length = elements.length; i < length; i++) {
+		if(document.all) {
+			if(elements[i].innerText == index) {
+		    	elements[i].bgColor = selectedColor;
+		    	break;
+		 	} 
+		} else {
+			if(elements[i].textContent == index) {
+		    	elements[i].bgColor = selectedColor;
+		    	break;
+		 	} 
+		}
+	}
+}
+
+function deColorTd() {
+	var elements = document.getElementById('questionListTable').getElementsByTagName('td');
+	
+	for(var i = 0, length = elements.length; i < length; i++) {
+		if(document.all) {	
+			if(elements[i].bgColor == selectedColor) {
+				elements[i].bgColor = defaultColor;
+				break;
+			}
+		} else {
+			if(elements[i].bgColor == selectedColor) {
+				elements[i].bgColor = defaultColor;
+				break;
+			}
+		}
+	}
+}
+
+function setQuestionAsAnswered(imgElement, tdElement) {
+	imgElement.style.visibility = "visible";
+}
+
+function clearAnswer(imgElement, tdElement) {
+	imgElement.style.visibility = "hidden";
+}
+
+function markQuestionForReview(imgElement, tdElement) {
+	imgElement.style.visibility = "visible";
+}
+
+function unmarkQuestionForReview(imgElement, tdElement) {
+	imgElement.style.visibility = "hidden";
+}
+
+// Sets questions as answered or marked for review when page loads
+function setQuestionStatus() {
+	
+	var rt = "1494768";
+	showUpdatedRemainingTime(Math.ceil(parseInt(rt) / 1000));
+	
+	var tdElements = document.getElementById('questionListTable').getElementsByTagName('td');
+	var imgElements = document.getElementById('questionListTable').getElementsByTagName('img');
+	
+	
+	
+	
+}
+
+// Selects option if a question has been answered
+function setAnswerStatus() {
+	var qid;
+	
+	
+}
+
+function clearAnsweredImage(index, questionId)
+{
+	var isMarked = document.getElementById('isOptionMarked' + index).value;
+	
+	var tdElements = document.getElementById('questionListTable').getElementsByTagName('td');
+	var imgElements = document.getElementById('questionListTable').getElementsByTagName('img');
+	
+	for(var i = 0, length = tdElements.length; i < length; i++) {
+		if(document.all) {
+			if(tdElements[i].innerText == index) {
+				clearAnswer(imgElements[2*i], tdElements[i]);
+				
+				if(imgElements[2*i + 1].style.visibility === 'visible') {
+					tdElements[i].style.backgroundColor = green;
+				} else {
+					tdElements[i].style.backgroundColor = nocolor;
+				}
+		    	break;
+		 	} 
+		} else {
+			if(tdElements[i].textContent == index) {
+				clearAnswer(imgElements[2*i], tdElements[i]);
+				
+				if(imgElements[2*i + 1].style.visibility === 'visible') {
+					tdElements[i].style.backgroundColor = blue;
+				} else {
+					tdElements[i].style.backgroundColor = nocolor;
+				}
+		    	break;
+		  	} 
+		}
+	}
+	var optionContainer = document.getElementById(questionId);
+	optionContainer.style.backgroundColor = defaultColor;
+}
+
+function setMarkedImage(index)
+{
+	var isAnswered = document.getElementById('isOptionAnswered' + index).value;
+	var isMarked = document.getElementById('isOptionMarked' + index).value;
+	
+	var tdElements = document.getElementById('questionListTable').getElementsByTagName('td');
+	var imgElements = document.getElementById('questionListTable').getElementsByTagName('img');
+	
+	if(isMarked == 'N') {	
+		for(var i = 0, length = tdElements.length; i < length; i++) {
+			if(document.all) {
+				if(tdElements[i].innerText  == index) {
+					markQuestionForReview(imgElements[2*i + 1], tdElements[i]);
+					tdElements[i].style.backgroundColor = blue;
+			    	break;
+				} 
+			} else {
+				if(tdElements[i].textContent == index) {
+					markQuestionForReview(imgElements[2*i + 1], tdElements[i]);
+					tdElements[i].style.backgroundColor = blue;
+			    	break;
+			  	} 
+			}
+		}
+		incrementMarkedValue(index);
+		
+	} else {
+		for(var i = 0, length = tdElements.length; i < length; i++) {
+			if(document.all) {
+				if(tdElements[i].innerText  == index) {
+					unmarkQuestionForReview(imgElements[2*i + 1], tdElements[i]);
+					
+					if(imgElements[2*i].style.visibility === 'visible') {
+						tdElements[i].style.backgroundColor = green;
+					} else {
+						tdElements[i].style.backgroundColor = nocolor;
+					}
+			    	break;
+				} 
+			} else {
+				if(tdElements[i].textContent == index) {
+					unmarkQuestionForReview(imgElements[2*i + 1], tdElements[i]);
+					
+					if(imgElements[2*i].style.visibility === 'visible') {
+						tdElements[i].style.backgroundColor = green;
+					} else {
+						tdElements[i].style.backgroundColor = nocolor;
+					}
+			    	break;
+			  	} 
+			}
+		}
+		decrementMarkedValue(index);
+	}
+}
+
+function setMarkedHidden(index)
+{
+	var isMarked = document.getElementById('isOptionMarked' + index).value;
+	
+	if(isMarked == 'N') {
+		document.getElementById('isOptionMarked' + index).value = 'Y';
+		document.getElementById('butMarkedForReview' + index).value = 'Unmark';
+		document.getElementById('butMarkedForReview' + index).style.color = "white";
+		document.getElementById('butMarkedForReview' + index).style.backgroundColor = "#257FD0";
+		
+	} else {
+		document.getElementById('isOptionMarked' + index).value = 'N';
+		document.getElementById('butMarkedForReview' + index).value = 'Mark for Review';
+		document.getElementById('butMarkedForReview' + index).style.color = "black";
+		document.getElementById('butMarkedForReview' + index).style.backgroundColor = "";
+	}
+}
+
+function setAnsweredImage(index, questionId)
+{
+	var isMarked = document.getElementById('isOptionMarked' + index).value;
+	
+	var tdElements = document.getElementById('questionListTable').getElementsByTagName('td');
+	var imgElements = document.getElementById('questionListTable').getElementsByTagName('img');
+	
+	for(var i = 0, length = tdElements.length; i < length; i++) {
+		if(document.all) {
+			if(tdElements[i].innerText == index) {
+				setQuestionAsAnswered(imgElements[2*i], tdElements[i]);
+				
+				if(imgElements[2*i + 1].style.visibility === 'visible') {
+					tdElements[i].style.backgroundColor = blue;
+				} else {
+					tdElements[i].style.backgroundColor = green;
+				}
+		    	break;
+		  	} 
+		} else {
+			if(tdElements[i].textContent == index) {
+				setQuestionAsAnswered(imgElements[2*i], tdElements[i]);
+				
+				if(imgElements[2*i + 1].style.visibility === 'visible') {
+					tdElements[i].style.backgroundColor = blue;
+				} else {
+					tdElements[i].style.backgroundColor = green;
+				}
+		    	break;
+			} 
+		}
+	}
+	var optionContainer = document.getElementById(questionId);
+	optionContainer.style.backgroundColor = green;
+}
+
+function incrementAnsweredValue(currentIndex)
+{
+	var isAnswered = document.getElementById('isOptionAnswered'+currentIndex).value;
+	
+    if(isAnswered == 'N') {
+    	var value = parseInt(document.getElementById('Answered').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        document.getElementById('Answered').value = value;
+        
+        document.getElementById('answeredHeading').innerHTML = "Answered: " + value;
+        decrementUnAnsweredValue(currentIndex);
+    }
+}
+
+function decrementAnsweredValue(currentIndex)
+{
+	var isAnswered = document.getElementById('isOptionAnswered'+currentIndex).value;
+    
+	if(isAnswered != 'N') {
+    	var value = parseInt(document.getElementById('Answered').value, 10);
+        value = isNaN(value) ? 0 : value;
+        
+        if(value > 0) {
+        	value--;
+        }
+        document.getElementById('Answered').value = value;
+        document.getElementById('answeredHeading').innerHTML = "Answered: " + value;
+        incrementUnAnsweredValue(currentIndex);
+    }
+}
+
+function incrementMarkedValue(currentIndex)
+{
+	var value = parseInt(document.getElementById('Review').value, 10);
+	value = isNaN(value) ? 0 : value;
+	value++;
+    document.getElementById('Review').value = value;
+    document.getElementById('reviewHeading').innerHTML = "Marked For Review: " + value;
+}
+
+function decrementMarkedValue(currentIndex)
+{
+	var value = parseInt(document.getElementById('Review').value, 10);
+	value = isNaN(value) ? 0 : value;
+	
+	if(value != 0) {
+		value--;
+	}
+    document.getElementById('Review').value = value;
+    document.getElementById('reviewHeading').innerHTML = "Marked For Review: " + value;
+}
+
+function decrementUnAnsweredValue(currentIndex)
+{
+	var value = parseInt(document.getElementById('UnAnswered').value, 10);
+	value = isNaN(value) ? 0 : value;
+	
+	if(value != 0) {
+		value--;
+    }
+    document.getElementById('UnAnswered').value = value;
+    document.getElementById('unAnsweredHeading').innerHTML = "Un-answered: " + value;
+}
+
+function incrementUnAnsweredValue(currentIndex)
+{
+	var value = parseInt(document.getElementById('UnAnswered').value, 10);
+	value = isNaN(value) ? 0 : value;
+	value++;
+    document.getElementById('UnAnswered').value = value;
+    document.getElementById('unAnsweredHeading').innerHTML = "Un-answered: " + value;
+}
+
+function setIsAnsweredHiddenField(currentIndex)
+{
+	var isAnswered = document.getElementById('isOptionAnswered' + currentIndex).value;
+	var elements = document.getElementsByName('option' + currentIndex);
+	var length = document.getElementsByName('option' + currentIndex).length;
+	
+	for (i = 0; i < length; i++) {
+		if(elements[i].checked) {
+			isAnswered = elements[i].value;
+			break;
+		}
+	}
+	document.getElementById('isOptionAnswered' + currentIndex).value = isAnswered;
+}
+
+function resetOrClearAnswer(currentIndex)
+{
+	var elements = document.getElementsByName('option' + currentIndex);
+	var isAnswered = document.getElementById('isOptionAnswered' + currentIndex).value;
+	var length = document.getElementsByName('option' + currentIndex).length;
+	
+	if(isAnswered == 'N') {
+ 		for (i = 0; i < length; i++) {
+			if(elements[i].checked) {
+				elements[i].checked = false;
+				break;
+			}
+		}
+ 	} else {
+	 	for (i = 0; i < length; i++) {		
+			if(elements[i].value == isAnswered) {
+				elements[i].checked = true;
+				break;
+			}
+		}
+	}
+}
+
+function clearAnsweredQuestion(currentIndex) {
+	
+	var isAnswered = document.getElementById('isOptionAnswered' + currentIndex).value;
+	
+	if(isAnswered == 'N') {
+		// window.alert("There is nothing to clear. The question is un-answered.");
+		showDialog("There is nothing to clear. The question is un-answered.");
+		
+	 } else {
+		var elements = document.getElementsByName('option' + currentIndex);
+		var length = document.getElementsByName('option' + currentIndex).length;
+		
+		for (i = 0; i < length; i++) {
+			if(elements[i].checked) {
+				elements[i].checked = false;
+				decrementAnsweredValue(currentIndex);
+				document.getElementById('isOptionAnswered' + currentIndex).value = "N";
+				break;
+			}
+		}
+	}
+}
+
+function postAnswer(answerId, questionId, currentIndex) {    
+	
+	var sessionId = '0508';
+	var hallTicketNumber = 'PU1702CAL121XYA0001';
+	var paperCode = 'XY';
+	var en = 'XY';
+			
+	setAnsweredImage(currentIndex, questionId);
+	deColorTd();
+	colorIndexedTd(currentIndex);
+	incrementAnsweredValue(currentIndex);
+	setIsAnsweredHiddenField(currentIndex);
+}
+
+function processUnsuccessfulResponse(response) {
+	
+	var refIndex = response.indexOf("REFRESH");
+		
+	if(refIndex == 0) {
+		refreshSession(response.substring(8));
+	} else {
+		// window.alert(response.substring(2));
+		
+		if(response.substring(0, 1) == "0") {
+			endExamination(response.substring(2));
+		}
+	}
+}
+
+function resetAnswer(questionId,currentIndex) {   
+	
+	var sessionId = '0508';
+	var hallTicketNumber = 'PU1702CAL121XYA0001';
+	var paperCode = 'XY';
+	var en = 'XY';
+			
+	deColorTd();
+	colorIndexedTd(currentIndex);
+	clearAnsweredQuestion(currentIndex);		  
+	clearAnsweredImage(currentIndex, questionId);
+}
+
+function markQuestion(questionId, currentIndex)
+{
+	var sessionId = '0508';
+	var hallTicketNumber = 'PU1702CAL121XYA0001';
+	var paperCode = 'XY';
+	var en = 'XY';
+	
+	setMarkedImage(currentIndex);
+	setMarkedHidden(currentIndex);
+	deColorTd();
+	colorIndexedTd(currentIndex);
+}
+
+function errorFunction(jqXHR, textStatus, errorThrown) {
+
+	if (jqXHR.status == 0) {
+		showDialog('Not Connected. Verify Network.');
+		//alert('Not Connected. Verify Network.');
+	} else if (jqXHR.status == 404) {
+		showDialog('Requested Page Not Found. [404]');
+		//alert('Requested Page Not Found. [404]');
+	} else if (jqXHR.status == 500) {
+		showDialog('Internal Server Error [500]');
+		//alert('Internal Server Error [500]');
+	} else if (exception == 'parsererror') {
+		showDialog('Requested JSON Parse Failed.');
+		//alert('Requested JSON Parse Failed.');
+	} else if (exception == 'timeout') {
+		showDialog('Time Out Error');
+		//alert('Time Out Error');
+	} else if (exception == 'abort') {
+		showDialog('Ajax Request Aborted.');
+		//alert('Ajax Request Aborted.');
+	} else {
+		showDialog('Uncaught Error !\n' + jqXHR.responseText);
+		//alert('Uncaught Error !\n' + jqXHR.responseText);
+	}
+}
+
+function showUpdatedRemainingTime(rt) {
+	
+	var m = Math.ceil(parseInt(rt) / 60);
+	// Stop timer at 0
+	m = m < 0 ? 0 : m;
+	
+	var msg = "Remaining Time: " + m + " Min";
+
+	if(m <= 5) {
+		msg = "<font color='#DF0101'>" + msg + "</font>";
+	} else {
+		msg = "<font color='#0080FF'>" + msg + "</font>";
+	}
+	document.getElementById("rt").innerHTML = msg;
+	
+	if(m <= 0 && "Y" == "Y") {
+		endExamination("EXAMTIME_ELAPSED");
+		// window.alert("Exam time has elapsed. Your examination has been submitted successfully.");
+		return true;
+	}
+	return false;
+}
+
+function generateAnswerSheetPDF() {
+ 	var htn = 'PU1702CAL121XYA0001';
+ 	var paperCode = 'XY';
+ 	var en = 'XY';
+ 	var csrfToken = getCsrfToken();
+ 
+ 	$.ajax({
+ 	 	type: "POST",
+ 	 	url: "generateAnswerSheetPDF",
+ 		data: "en=" + en + "&paperCode=" + paperCode + "&hallTicketNumber=" + htn + csrfToken,
+ 	 	dataType: "text",
+ 	
+ 	 	success: function(response) {
+ 	 		var success = response.substring(0, 7);
+ 	 		
+ 	 		if(success == "SUCCESS") {
+ 	 			var filePath = response.substring(8);
+ 	 			downloadAnswerSheetPDF(filePath);
+ 	 		} else {
+ 	 			showDialog(response);
+ 	 			//alert(response);
+ 	 		}
+ 		},
+ 		error: function (jqXHR, textStatus, errorThrown) {
+			errorFunction(jqXHR, textStatus, errorThrown);
+		}
+ 	});
+}
+var disconnected = "0";
+
+var examTime = 25 * 60 + 60;
+
+function setExamRemainingTime() {
+
+	var sid = '0508';
+ 	var paperCode = 'XY';
+ 	var en = 'XY';
+ 	var csrfToken = getCsrfToken();
+ 
+	examTime = examTime - 60;
+	showUpdatedRemainingTime(examTime);
+ 	setTimeout(setExamRemainingTime, 60000);
+}
+
+function copyStatistics() {
+	document.getElementById('questionAnswered').value = document.getElementById('Answered').value;
+	document.getElementById('questionUnAnswered').value = document.getElementById('UnAnswered').value;
+	document.getElementById('questionMarked').value = document.getElementById('Review').value;
+}
+
+function downloadAnswerSheetPDF(filePath) {
+	copyStatistics();
+	document.frm.downloadPath.value = filePath;
+	
+	var f = document.getElementById('frm');
+	f.action = "downloadAnswerSheetPDF";
+	f.submit();
+}
+
+function submitExamination() {
+	// var confirmMsg = "Once examination is submitted, it cannot be restarted. Do you really want to submit the examination ?";
+	var confirmMsg = "Once question paper section is submitted, you will not be able to login and continue with the current question paper section. Do you really want to submit ?";
+	document.getElementById("confirm-dialog-text").innerHTML = confirmMsg;
+	
+	$("#dialog-confirm").dialog({
+		resizable : false,
+		scrollable : true,
+		width : 600,
+		modal : true,
+		buttons : {
+			Cancel : function() {
+				$(this).dialog("close");
+			},
+			OK : function() {
+				$(this).dialog("close");
+				endExamination("EXAM_SUBMITTED");
+			}
+		}
+	});
+	$("#dialog-confirm").dialog("option", "maxHeight", 400);
+	/*
+	var c = window.confirm(confirmMsg);
+	if(c == true) {
+		endExamination("EXAM_SUBMITTED");
+	}
+	*/
+}
+
+function endExamination(message) {
+	copyStatistics();
+	document.getElementById('messageString').value = message;
+	
+	var f = document.getElementById('frm');
+	// f.action = "endExamination";
+	f.action = "sectionEnd_RAGA.html";
+	f.submit();
+}
+
+function refreshSession(htn) {
+	copyStatistics();
+	document.frm.hallTicketNumber.value = htn;
+	
+	var f = document.getElementById('frm');
+	f.action = "refreshSession";
+	f.submit();
+}
+
+function updateStatsOnInstructionsPage() {
+	copyStatistics();
+	
+	var f = document.getElementById('frm');
+	f.action = "examInsideInstructions";
+	f.submit();
+}
+
+function setReqPending() {
+	document.getElementById("requestPending").value = "YES";
+}
+
+function clearReqPending() {
+	document.getElementById("requestPending").value = "NO";
+}
+
+function isReqPending() {
+	
+	if(document.getElementById("requestPending").value == "NO") {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function areImagesLoaded() {
+	
+	if(document.getElementById("allImagesLoaded").value == "NO") {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function formSubmitAllowed() {
+	
+	if(document.getElementById("requestPending").value == "NO") {
+		return true;
+	} else {
+		return false;
+	}
+}
+var images = [];
+
+function reloadImage(elem) {
+	var currSrc = elem.src;
+	
+	if(images.indexOf(currSrc) != -1) {
+		return;
+	}
+	var qidx = currSrc.indexOf("?");
+	
+	if(qidx != -1) {
+		elem.src = currSrc.substring(0, qidx) + "?" + uuid.v4();
+	} else {
+		elem.src = currSrc + "?" + uuid.v4();
+	}
+	var len = images.length;
+	images[len] = elem.src;
+}
+
+function imageLoaded(imgSrc) {
+	var len = images.length;
+	images[len] = imgSrc;
+}
+</script>
+</head>
+<body onLoad="setQuestionStatus();colorFirstTd();setAnswerStatus();setExamRemainingTime();">
+	<div id="dialog" title="ALERT" style="display: none;">
+		<p id="dialog-text"></p>
+	</div>
+	<div id="dialog-confirm" title="CONFIRMATION" style="display: none;">
+		<p id="confirm-dialog-text" style="font-weight: bold; font-size: 9pt; color: red;"></p>
+	</div>
+	
+
+	<div id="page">
+		<div>
+			<table style="width: 100%; margin-top: 2px; border-collapse: collapse;">
+				<tbody><tr class="header_row">
+					<td class="name_htn">demo&nbsp;(demo)</td>
+					<td class="exam"><h3 id="header">Online-Examination&nbsp;<br />
+					</h3></td>
+					<td class="gap"><div id="rt" class="greyborder bold_text" style="padding: 2px 10px;"><font color="#0080FF">Remaining Time: 25 Min</font></div></td>
+					<td class="sid"><b class="greyborder" style="padding: 2px 10px;">Session Id : 0508</b></td>
+
+					<td class="photo" rowspan="2" bgcolor="#FFFFFF">
+							
+								<img class="photo" src="EXAM_RAGA_files/PU1702CAL121XYA0001.jpg">
+							
+							
+				  </td>
+				</tr>
+
+				<tr>
+					<td align="left" colspan="1" style="padding-left: 5px;">
+						<table style="border-collapse: collapse;">
+							<tbody><tr>
+								<td class="stats_padding" bgcolor="#A9F5D0"><img class="small" src="EXAM_RAGA_files/tick.png">
+									<h5 id="answeredHeading">Answered: 0</h5></td>
+								<td class="stats_padding" bgcolor="#F6CECE">
+									<h5 id="unAnsweredHeading">Un-answered: 30</h5>
+								</td>
+								<td class="stats_padding" bgcolor="#A9D0F5"><img class="small" src="EXAM_RAGA_files/question.png">
+									<h5 id="reviewHeading">Marked For Review: 0</h5></td>
+							</tr>
+						</tbody></table>
+					</td>
+					<td align="center"><div class="message"></div></td>
+					<td align="center"><div class="lgborder bold_text" style="padding: 2px 10px;">Section Name:
+							Raga</div></td>
+					<td align="center"></td>
+				</tr>
+			</tbody></table>
+		</div>
+		<hr>
+		<div class="block2Outer">
+			<div id="questionList" class="block2Inner1" style="overflow: auto; padding-left: 5px; padding-right: 5px; height: 576px;">
+
+				<table class="myTable" style="width: 99%;" id="questionListTable">
+					
+					
+
+					
+						
+						
+							
+						
+					
+
+					
+					
+						<tbody><tr>
+							<td align="left" valign="middle" bgcolor="#DFA9B4">
+								<div onClick="location.href='#71'; deColorTd(); colorIndexedTd(71)">
+									<a href="#71" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(71)"> 71</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#81'; deColorTd(); colorIndexedTd(81)">
+											<a href="#81" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(81)"> 81</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#91'; deColorTd(); colorIndexedTd(91)">
+											<a href="#91" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(91)"> 91</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+						<tr>
+							<td align="left" valign="middle">
+								<div onClick="location.href='#72'; deColorTd(); colorIndexedTd(72)">
+									<a href="#72" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(72)"> 72</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#82'; deColorTd(); colorIndexedTd(82)">
+											<a href="#82" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(82)"> 82</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#92'; deColorTd(); colorIndexedTd(92)">
+											<a href="#92" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(92)"> 92</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+						<tr>
+							<td align="left" valign="middle">
+								<div onClick="location.href='#73'; deColorTd(); colorIndexedTd(73)">
+									<a href="#73" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(73)"> 73</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#83'; deColorTd(); colorIndexedTd(83)">
+											<a href="#83" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(83)"> 83</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#93'; deColorTd(); colorIndexedTd(93)">
+											<a href="#93" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(93)"> 93</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+						<tr>
+							<td align="left" valign="middle">
+								<div onClick="location.href='#74'; deColorTd(); colorIndexedTd(74)">
+									<a href="#74" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(74)"> 74</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#84'; deColorTd(); colorIndexedTd(84)">
+											<a href="#84" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(84)"> 84</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#94'; deColorTd(); colorIndexedTd(94)">
+											<a href="#94" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(94)"> 94</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+						<tr>
+							<td align="left" valign="middle">
+								<div onClick="location.href='#75'; deColorTd(); colorIndexedTd(75)">
+									<a href="#75" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(75)"> 75</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#85'; deColorTd(); colorIndexedTd(85)">
+											<a href="#85" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(85)"> 85</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#95'; deColorTd(); colorIndexedTd(95)">
+											<a href="#95" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(95)"> 95</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+						<tr>
+							<td align="left" valign="middle">
+								<div onClick="location.href='#76'; deColorTd(); colorIndexedTd(76)">
+									<a href="#76" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(76)"> 76</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#86'; deColorTd(); colorIndexedTd(86)">
+											<a href="#86" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(86)"> 86</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#96'; deColorTd(); colorIndexedTd(96)">
+											<a href="#96" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(96)"> 96</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+						<tr>
+							<td align="left" valign="middle">
+								<div onClick="location.href='#77'; deColorTd(); colorIndexedTd(77)">
+									<a href="#77" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(77)"> 77</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#87'; deColorTd(); colorIndexedTd(87)">
+											<a href="#87" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(87)"> 87</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#97'; deColorTd(); colorIndexedTd(97)">
+											<a href="#97" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(97)"> 97</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+						<tr>
+							<td align="left" valign="middle">
+								<div onClick="location.href='#78'; deColorTd(); colorIndexedTd(78)">
+									<a href="#78" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(78)"> 78</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#88'; deColorTd(); colorIndexedTd(88)">
+											<a href="#88" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(88)"> 88</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#98'; deColorTd(); colorIndexedTd(98)">
+											<a href="#98" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(98)"> 98</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+						<tr>
+							<td align="left" valign="middle">
+								<div onClick="location.href='#79'; deColorTd(); colorIndexedTd(79)">
+									<a href="#79" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(79)"> 79</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#89'; deColorTd(); colorIndexedTd(89)">
+											<a href="#89" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(89)"> 89</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#99'; deColorTd(); colorIndexedTd(99)">
+											<a href="#99" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(99)"> 99</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+						<tr>
+							<td align="left" valign="middle">
+								<div onClick="location.href='#80'; deColorTd(); colorIndexedTd(80)">
+									<a href="#80" target="_self" class="nodeco" onClick="javascript: deColorTd(); colorIndexedTd(80)"> 80</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+								</div></td>
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#90'; deColorTd(); colorIndexedTd(90)">
+											<a href="#90" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(90)"> 90</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+
+							
+								
+									<td align="left" valign="middle">
+										<div onClick="location.href='#100'; deColorTd(); colorIndexedTd(100)">
+											<a href="#100" target="_self" class="nodeco" onClick="javascript:deColorTd(); colorIndexedTd(100)"> 100</a> <img class="small hide" src="EXAM_RAGA_files/tick.png"> <img class="small hide" src="EXAM_RAGA_files/question.png">
+										</div></td>
+								
+							
+						</tr>
+					
+				</tbody></table>
+			</div>
+
+			<div id="question" class="block2Inner2" style="overflow: auto scroll; height: 576px; visibility: visible;">
+				<table class="myTableQuestion" id="questionDisplayTable" style="padding-left: 15px; width: 100%">
+
+					
+						
+
+						<tbody><tr style="padding-bottom: 1cm;">
+							<td id="71"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_78_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_71" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option71" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_71',71)">A</td>
+											
+												<td><input type="radio" name="option71" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_71',71)">B</td>
+											
+												<td><input type="radio" name="option71" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_71',71)">C</td>
+											
+												<td><input type="radio" name="option71" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_71',71)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_71',71)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview71" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_71',71)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered71" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked71" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="72"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_79_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_72" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option72" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_72',72)">A</td>
+											
+												<td><input type="radio" name="option72" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_72',72)">B</td>
+											
+												<td><input type="radio" name="option72" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_72',72)">C</td>
+											
+												<td><input type="radio" name="option72" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_72',72)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_72',72)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview72" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_72',72)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered72" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked72" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="73"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_80_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_73" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option73" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_73',73)">A</td>
+											
+												<td><input type="radio" name="option73" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_73',73)">B</td>
+											
+												<td><input type="radio" name="option73" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_73',73)">C</td>
+											
+												<td><input type="radio" name="option73" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_73',73)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_73',73)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview73" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_73',73)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered73" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked73" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="74"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_81_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_74" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option74" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_74',74)">A</td>
+											
+												<td><input type="radio" name="option74" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_74',74)">B</td>
+											
+												<td><input type="radio" name="option74" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_74',74)">C</td>
+											
+												<td><input type="radio" name="option74" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_74',74)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_74',74)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview74" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_74',74)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered74" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked74" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="75"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_82_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_75" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option75" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_75',75)">A</td>
+											
+												<td><input type="radio" name="option75" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_75',75)">B</td>
+											
+												<td><input type="radio" name="option75" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_75',75)">C</td>
+											
+												<td><input type="radio" name="option75" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_75',75)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_75',75)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview75" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_75',75)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered75" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked75" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="76"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_83_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_76" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option76" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_76',76)">A</td>
+											
+												<td><input type="radio" name="option76" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_76',76)">B</td>
+											
+												<td><input type="radio" name="option76" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_76',76)">C</td>
+											
+												<td><input type="radio" name="option76" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_76',76)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_76',76)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview76" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_76',76)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered76" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked76" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="77"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_84_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_77" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option77" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_77',77)">A</td>
+											
+												<td><input type="radio" name="option77" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_77',77)">B</td>
+											
+												<td><input type="radio" name="option77" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_77',77)">C</td>
+											
+												<td><input type="radio" name="option77" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_77',77)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_77',77)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview77" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_77',77)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered77" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked77" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="78"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_85_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_78" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option78" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_78',78)">A</td>
+											
+												<td><input type="radio" name="option78" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_78',78)">B</td>
+											
+												<td><input type="radio" name="option78" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_78',78)">C</td>
+											
+												<td><input type="radio" name="option78" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_78',78)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_78',78)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview78" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_78',78)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered78" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked78" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="79"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_86_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_79" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option79" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_79',79)">A</td>
+											
+												<td><input type="radio" name="option79" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_79',79)">B</td>
+											
+												<td><input type="radio" name="option79" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_79',79)">C</td>
+											
+												<td><input type="radio" name="option79" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_79',79)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_79',79)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview79" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_79',79)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered79" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked79" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="80"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_87_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_80" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option80" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_80',80)">A</td>
+											
+												<td><input type="radio" name="option80" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_80',80)">B</td>
+											
+												<td><input type="radio" name="option80" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_80',80)">C</td>
+											
+												<td><input type="radio" name="option80" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_80',80)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_80',80)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview80" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_80',80)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered80" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked80" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="81"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_88_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_81" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option81" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_81',81)">A</td>
+											
+												<td><input type="radio" name="option81" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_81',81)">B</td>
+											
+												<td><input type="radio" name="option81" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_81',81)">C</td>
+											
+												<td><input type="radio" name="option81" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_81',81)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_81',81)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview81" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_81',81)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered81" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked81" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="82"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_89_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_82" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option82" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_82',82)">A</td>
+											
+												<td><input type="radio" name="option82" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_82',82)">B</td>
+											
+												<td><input type="radio" name="option82" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_82',82)">C</td>
+											
+												<td><input type="radio" name="option82" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_82',82)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_82',82)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview82" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_82',82)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered82" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked82" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="83"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_90_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_83" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option83" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_83',83)">A</td>
+											
+												<td><input type="radio" name="option83" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_83',83)">B</td>
+											
+												<td><input type="radio" name="option83" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_83',83)">C</td>
+											
+												<td><input type="radio" name="option83" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_83',83)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_83',83)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview83" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_83',83)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered83" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked83" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="84"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_91_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_84" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option84" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_84',84)">A</td>
+											
+												<td><input type="radio" name="option84" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_84',84)">B</td>
+											
+												<td><input type="radio" name="option84" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_84',84)">C</td>
+											
+												<td><input type="radio" name="option84" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_84',84)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_84',84)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview84" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_84',84)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered84" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked84" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="85"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_92_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_85" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option85" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_85',85)">A</td>
+											
+												<td><input type="radio" name="option85" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_85',85)">B</td>
+											
+												<td><input type="radio" name="option85" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_85',85)">C</td>
+											
+												<td><input type="radio" name="option85" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_85',85)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_85',85)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview85" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_85',85)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered85" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked85" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="86"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_93_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_86" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option86" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_86',86)">A</td>
+											
+												<td><input type="radio" name="option86" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_86',86)">B</td>
+											
+												<td><input type="radio" name="option86" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_86',86)">C</td>
+											
+												<td><input type="radio" name="option86" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_86',86)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_86',86)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview86" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_86',86)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered86" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked86" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="87"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_94_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_87" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option87" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_87',87)">A</td>
+											
+												<td><input type="radio" name="option87" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_87',87)">B</td>
+											
+												<td><input type="radio" name="option87" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_87',87)">C</td>
+											
+												<td><input type="radio" name="option87" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_87',87)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_87',87)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview87" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_87',87)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered87" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked87" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="88"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_95_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_88" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option88" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_88',88)">A</td>
+											
+												<td><input type="radio" name="option88" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_88',88)">B</td>
+											
+												<td><input type="radio" name="option88" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_88',88)">C</td>
+											
+												<td><input type="radio" name="option88" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_88',88)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_88',88)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview88" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_88',88)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered88" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked88" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="89"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_96_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_89" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option89" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_89',89)">A</td>
+											
+												<td><input type="radio" name="option89" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_89',89)">B</td>
+											
+												<td><input type="radio" name="option89" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_89',89)">C</td>
+											
+												<td><input type="radio" name="option89" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_89',89)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_89',89)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview89" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_89',89)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered89" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked89" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="90"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_97_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_90" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option90" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_90',90)">A</td>
+											
+												<td><input type="radio" name="option90" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_90',90)">B</td>
+											
+												<td><input type="radio" name="option90" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_90',90)">C</td>
+											
+												<td><input type="radio" name="option90" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_90',90)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_90',90)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview90" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_90',90)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered90" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked90" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="91"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_98_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_91" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option91" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_91',91)">A</td>
+											
+												<td><input type="radio" name="option91" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_91',91)">B</td>
+											
+												<td><input type="radio" name="option91" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_91',91)">C</td>
+											
+												<td><input type="radio" name="option91" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_91',91)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_91',91)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview91" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_91',91)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered91" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked91" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="92"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_99_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_92" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option92" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_92',92)">A</td>
+											
+												<td><input type="radio" name="option92" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_92',92)">B</td>
+											
+												<td><input type="radio" name="option92" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_92',92)">C</td>
+											
+												<td><input type="radio" name="option92" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_92',92)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_92',92)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview92" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_92',92)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered92" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked92" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="93"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_100_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_93" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option93" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_93',93)">A</td>
+											
+												<td><input type="radio" name="option93" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_93',93)">B</td>
+											
+												<td><input type="radio" name="option93" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_93',93)">C</td>
+											
+												<td><input type="radio" name="option93" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_93',93)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_93',93)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview93" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_93',93)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered93" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked93" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="94"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_101_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_94" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option94" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_94',94)">A</td>
+											
+												<td><input type="radio" name="option94" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_94',94)">B</td>
+											
+												<td><input type="radio" name="option94" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_94',94)">C</td>
+											
+												<td><input type="radio" name="option94" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_94',94)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_94',94)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview94" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_94',94)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered94" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked94" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="95"></td>
+						</tr>
+
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_102_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_95" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option95" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_95',95)">A</td>
+											
+												<td><input type="radio" name="option95" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_95',95)">B</td>
+											
+												<td><input type="radio" name="option95" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_95',95)">C</td>
+											
+												<td><input type="radio" name="option95" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_95',95)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_95',95)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview95" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_95',95)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered95" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked95" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="96"></td>
+						</tr>
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td><div>
+										
+										
+										<img src="EXAM_RAGA_files/I_103_d.jpg" alt="Reload Question Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)">
+									</div></td>
+							</tr>
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_104_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_96" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option96" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_96',96)">A</td>
+											
+												<td><input type="radio" name="option96" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_96',96)">B</td>
+											
+												<td><input type="radio" name="option96" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_96',96)">C</td>
+											
+												<td><input type="radio" name="option96" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_96',96)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_96',96)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview96" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_96',96)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered96" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked96" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="97"></td>
+						</tr>
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td><div>
+										
+										
+										<img src="EXAM_RAGA_files/I_103_d.jpg" alt="Reload Question Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)">
+									</div></td>
+							</tr>
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_105_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_97" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option97" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_97',97)">A</td>
+											
+												<td><input type="radio" name="option97" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_97',97)">B</td>
+											
+												<td><input type="radio" name="option97" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_97',97)">C</td>
+											
+												<td><input type="radio" name="option97" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_97',97)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_97',97)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview97" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_97',97)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered97" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked97" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="98"></td>
+						</tr>
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td><div>
+										
+										
+										<img src="EXAM_RAGA_files/I_103_d.jpg" alt="Reload Question Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)">
+									</div></td>
+							</tr>
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_106_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_98" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option98" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_98',98)">A</td>
+											
+												<td><input type="radio" name="option98" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_98',98)">B</td>
+											
+												<td><input type="radio" name="option98" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_98',98)">C</td>
+											
+												<td><input type="radio" name="option98" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_98',98)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_98',98)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview98" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_98',98)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered98" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked98" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="99"></td>
+						</tr>
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td><div>
+										
+										
+										<img src="EXAM_RAGA_files/I_107_d.jpg" alt="Reload Question Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)">
+									</div></td>
+							</tr>
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_108_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_99" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option99" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_99',99)">A</td>
+											
+												<td><input type="radio" name="option99" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_99',99)">B</td>
+											
+												<td><input type="radio" name="option99" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_99',99)">C</td>
+											
+												<td><input type="radio" name="option99" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_99',99)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_99',99)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview99" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_99',99)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered99" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked99" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+						
+
+						<tr style="padding-bottom: 1cm;">
+							<td id="100"></td>
+						</tr>
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td><div>
+										
+										
+										<img src="EXAM_RAGA_files/I_107_d.jpg" alt="Reload Question Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)">
+									</div></td>
+							</tr>
+						
+
+						
+							<tr style="padding-bottom: 2cm;">
+								<td>  <img src="EXAM_RAGA_files/I_109_d.jpg" alt="Reload Question Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"></td>
+							</tr>
+						
+
+						<tr height="2"></tr>
+
+						
+
+						<tr height="2"></tr>
+
+						<tr>
+							<td> 
+									
+
+									<table id="XY_XY_1_100" class="responseTable">
+										<tbody><tr>
+											
+												<td><input type="radio" name="option100" value="A" style="vertical-align: top;" onClick="postAnswer('A','XY_XY_1_100',100)">A</td>
+											
+												<td><input type="radio" name="option100" value="B" style="vertical-align: top;" onClick="postAnswer('B','XY_XY_1_100',100)">B</td>
+											
+												<td><input type="radio" name="option100" value="C" style="vertical-align: top;" onClick="postAnswer('C','XY_XY_1_100',100)">C</td>
+											
+												<td><input type="radio" name="option100" value="D" style="vertical-align: top;" onClick="postAnswer('D','XY_XY_1_100',100)">D</td>
+											
+											<td>&nbsp;</td>
+											<td><input type="button" value="Clear Answer" style="vertical-align: top;" onClick="resetAnswer('XY_XY_1_100',100)">
+											</td><td>&nbsp;</td>
+											<td><input type="button" id="butMarkedForReview100" value="Mark For Review" style="vertical-align: top; width: 100px;" onClick="markQuestion('XY_XY_1_100',100)">
+											</td><td class="hi
+											de"><input type="hidden" name="isOptionAnswered" id="isOptionAnswered100" value="N">
+											</td><td class="hide"><input type="hidden" name="isOptionMarked" id="isOptionMarked100" value="N">
+										</td></tr>
+									</tbody></table>
+								</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: 1px solid #000; color: lightgrey; font-size: 9pt;" align="right">121</td>
+						</tr>
+					
+				</tbody></table>
+			</div>
+		</div>
+		<hr>
+		<table style="width: 100%;">
+			<tbody><tr>
+				<td align="left" nowrap="nowrap" width="30%"><div>
+						<input id="viewInsBtn" type="button" class="exam_btn" value="View Instructions" onClick="javascript:updateStatsOnInstructionsPage1()" title="Will take you to the exam instructions page">
+						
+					</div></td>
+				<td align="center"></td>
+				<td align="right"><label style="color: red; font-weight: bold; font-size: 9pt; white-space: nowrap;">DON'T
+						PRESS "SUBMIT QUESTION PAPER SECTION" BUTTON TILL YOU HAVE COMPLETED THE SECTION.</label></td>
+			</tr>
+			<tr>
+				<td align="left" nowrap="nowrap" width="30%"></td>
+				<td align="center"></td>
+				<td width="30%" align="left"><input id="submitExamBtn" type="button" class="exam_btn" style="color: #CC0000;" value="Submit Question Paper Section" onClick="javascript:submitExamination()"></td>
+			</tr>
+		</tbody></table>
+
+		<div class="hiddenForms">
+			<form method="post" id="frm" name="frm">
+				<input type="hidden" name="_csrf" value="18289bd5-55d4-4764-9447-8d8628a41989">
+				<input type="hidden" name="hallTicketNumber" value="PU1702CAL121XYA0001">
+				<input type="hidden" name="sessionId" value="0508">
+				<input type="hidden" name="en" id="en" value="XY">
+				<input type="hidden" name="paperCode" value="XY">
+				<input type="hidden" name="userName" value="Amit">
+				<input type="hidden" name="candidatePhotographExists" value="Y">
+				<input type="hidden" name="photographName" value="PU1702CAL121XYA0001.html">
+				<input type="hidden" name="questionAnswered" id="questionAnswered">
+				<input type="hidden" name="questionUnAnswered" id="questionUnAnswered">
+				<input type="hidden" name="questionMarked" id="questionMarked">
+				<input type="hidden" name="downloadPath" id="downloadPath">
+				<input type="hidden" name="messageString" id="messageString" value="">
+				<input type="hidden" name="pageCode" id="examination">
+				<input type="hidden" name="hppCode" id="hppCode">
+			</form>
+			<input type="hidden" id="requestPending" value="NO">
+			<input type="hidden" id="allImagesLoaded" value="YES">
+
+			<input type="hidden" name="Answered" id="Answered" value="0">
+			<input type="hidden" name="UnAnswered" id="UnAnswered" value="30">
+			<input type="hidden" name="Review" id="Review" value="0">
+		</div>
+	</div>
+
+
+</body>
+<!-- Mirrored from agnipathvayu.cdac.in/AV/AVMock/XY/EXAM_RAGA.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Aug 2022 15:33:18 GMT -->
+</html>

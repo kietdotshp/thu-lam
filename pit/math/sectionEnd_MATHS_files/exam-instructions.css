@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+.block2Outer {
+	min-height: 70%;
+	height: 75%;
+	width: 100%;
+	background-color: white;
+	text-align: center;
+	overflow: auto;
+}
+
+.block2Inner {
+	float: left;
+	width: 100%;
+	display: inline;
+}
+
+.block3Outer {
+	width: 100%;
+	background-color: white;
+	overflow: auto;
+}
+
+.block3Inner {
+	float: left;
+	width: 100%;
+}
+
+.shadow {
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 0px;
+	-webkit-box-shadow: #666 6px 6px 6px;
+	-moz-box-shadow: #666 6px 6px 6px;
+	box-shadow: #666 6px 6px 6px;
+	background-color: #FFFFFF;
+	background: #FFFFFF;
+	height: 100%;
+	min-height: 90%;
+	width: 100%;
+	position: absolute;
+	top: 2px;
+	bottom: 0;
+	left: 5px;
+	right: 0;
+	overflow: auto;
+}
+
+.qp_instructions {
+	text-align: center;
+	width: 90%;
+}
+
+.full_width {
+	width: 100%;
+}

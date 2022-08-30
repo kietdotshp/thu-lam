@@ -1,0 +1,274 @@
+@CHARSET "UTF-8";
+
+.center {
+	text-align: center;
+}
+
+.noborder {
+	border: 0px;
+}
+
+.lgborder {
+	border: 1px solid lightgrey;
+}
+
+.greyborder {
+	border: 1px solid grey;
+}
+
+.blackborder {
+	border: 1px solid black;
+}
+
+.hide {
+	visibility: hidden;
+}
+
+.no_display {
+	display: none;
+}
+
+.left {
+	text-align: left;
+}
+
+.bold_text {
+	font-weight: bold;
+}
+
+.bottom_margin {
+	height: 1em;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.link_border {
+	padding: 0 5px;
+	border: 1px solid grey;
+}
+
+.nopadding {
+	padding: 0;
+}
+
+.nolrpadding {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.nolpadding {
+	padding-left: 0;
+}
+
+.norpadding {
+	padding-right: 0;
+}
+
+body {
+	background-color: #F0F8FF;
+	text-align: center;
+	overflow: auto;
+	font-size: 9.0pt;
+	font-family: calibri, Arial, Helvetica;
+}
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+input[type=file] {
+	border: 0px solid #555555;
+	border-radius: 0px;
+}
+
+input[type=button].small, input[type=submit].small {
+	border: 1px solid #555555;
+	border-radius: 0px;
+	padding-left: 4px;
+	padding-right: 4px;
+	background-color: #DDDDDD;
+	font-size: 8pt;
+}
+
+input[type=button], input[type=submit] {
+	border: 1px solid #555555;
+	border-radius: 0px;
+	padding-left: 4px;
+	padding-right: 4px;
+	background-color: #DDDDDD;
+	font-size: 9pt;
+}
+
+input[type=button]:hover, input[type=submit]:hover {
+	border: 1px solid #555555;
+	border-radius: 0px;
+	padding-left: 4px;
+	padding-right: 4px;
+	background-color: #B0C4DE;
+}
+
+input {
+	border: 1px solid #555555;
+	border-radius: 0px;
+	font-size: 9.0pt;
+}
+
+select {
+	border: 1px solid #555555;
+	border-radius: 0px;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: #0000ff;
+	text-decoration: underline;
+}
+
+.errorblock {
+	text-align: center;
+	color: red;
+}
+/* Page Heading */
+/* -------------------------------------------- */
+#page_heading {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	border: 1px solid lightgrey;
+	background-color: #D6EAF8;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#page_heading_1 {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	border: 1px solid grey;
+	background-color: #D6EAF8;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+/* Copyright */
+/* -------------------------------------------- */
+#copyright_new {
+	position: fixed;
+	left: 0px;
+	width: 100%;
+	color: black;
+	text-align: center;
+	background: #D6EAF8;
+	font-size: 8pt;
+	bottom: 0;
+	padding: 3px;
+	border: 1px solid #BBBBBB;
+	font-weight: bold;
+}
+
+textarea {
+	resize: none;
+	margin: 0;
+	padding: 3px;
+	width: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.dropdown {
+	width: 190px;
+}
+
+.textfield {
+	width: 190px;
+}
+
+.textbox {
+	width: 185px;
+	padding-left: 3px;
+}
+
+.small_textbox {
+	width: 60px;
+}
+
+.large_textbox {
+	width: 230px;
+	padding-left: 3px;
+}
+
+.text_label {
+	border: 1px solid grey;
+	width: 185px;
+	height: 17px;
+	display: inline-block;
+	background: transparent;
+	vertical-align: middle;
+	font-size: 11pt;
+	padding-left: 3px;
+}
+
+.small_text_label {
+	border: 1px solid grey;
+	width: 80px;
+	height: 17px;
+	display: inline-block;
+	background: transparent;
+	vertical-align: middle;
+	font-size: 11pt;
+	padding-left: 3px;
+}
+
+.form_table_1 {
+	text-align: left;
+	border-spacing: 5px;
+	border-collapse: separate;
+	border: 1px solid grey;
+	background-color: #D6EAF8;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.form_table_2 {
+	text-align: left;
+	border-spacing: 5px;
+	border-collapse: separate;
+	border: 1px solid grey;
+	background-color: #CEF6E3;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.form_table_3 {
+	text-align: left;
+	border-spacing: 5px;
+	border-collapse: separate;
+}
+
+.status_message {
+	font-size: 11pt;
+	color: #404040;
+}
+
+#exam_name_lbl {
+	color: #E30B22;
+	/* 	font-size: 14pt; */
+	vertical-align: bottom;
+}
+
+.fontsize8 {
+	font-size: 8pt;
+}
+
+.fontsize9 {
+	font-size: 9pt;
+}
+
+.header_bgcolor {
+	background-color: #C1DCF1;
+	/* 	background-color: #A9E2F9; */
+}

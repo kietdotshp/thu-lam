@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://127.0.0.1:8080/afrec-local/exam/endQuestionPaperSection -->
+<html>
+<!-- Mirrored from agnipathvayu.cdac.in/AV/AVMock/XY/sectionEnd_ENG.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Aug 2022 15:21:40 GMT -->
+<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<meta http-equiv="default-style" content="text/css;">
+<title>EXAM</title>
+
+
+
+
+<link rel="stylesheet" href="sectionEnd_ENG_files/exam-common.css" type="text/css">
+<link rel="stylesheet" href="sectionEnd_ENG_files/exam-instructions.css" type="text/css" media="screen,projection,print">
+
+<link rel="stylesheet" href="sectionEnd_ENG_files/ui-dialog.css" type="text/css">
+<link rel="stylesheet" href="sectionEnd_ENG_files/jquery-ui.css" type="text/css">
+
+<!-- <script type="text/javascript" src="/afrec-local/resources/js/jquery.min.js"></script> -->
+<script src="sectionEnd_ENG_files/global.js"></script>
+<script src="sectionEnd_ENG_files/uuid.js"></script>
+
+<script src="sectionEnd_ENG_files/jquery-1.12.4.js" type="text/javascript"></script>
+<script src="sectionEnd_ENG_files/jquery-ui.js" type="text/javascript"></script>
+
+<script>
+	document.oncontextmenu = function() {
+		return false;
+	}
+	document.ondragstart = function() {
+		return false;
+	}
+
+	// Disable Backspace
+	$(document).keydown(function(e) {
+		if (e.which == 8) {
+			e.preventDefault();
+		}
+	});
+
+	$.ajaxSetup({
+		cache : false
+	});
+	var busy = 0;
+
+	function getCsrfToken() {
+		return '&_csrf=e4a38010-9c42-4b0e-8314-9a3761f815bd';
+		// return '';
+	}
+
+	function checkExaminationStarted() {
+		if (busy == 1) {
+			var msg = "An operation is already in progress.";
+			showDialog(msg);
+			//window.alert(msg);
+			return;
+		}
+		busy = 1;
+		var csrfToken = getCsrfToken();
+		document.getElementById("frm").submit();
+	}
+	var images = [];
+
+	function reloadImage(elem) {
+		var currSrc = elem.src;
+
+		if (images.indexOf(currSrc) != -1) {
+			return;
+		}
+		var qidx = currSrc.indexOf("?");
+
+		if (qidx != -1) {
+			elem.src = currSrc.substring(0, qidx) + "?" + uuid.v4();
+		} else {
+			elem.src = currSrc + "?" + uuid.v4();
+		}
+		var len = images.length;
+		images[len] = elem.src;
+	}
+
+	function imageLoaded(imgSrc) {
+		var len = images.length;
+		images[len] = imgSrc;
+	}
+
+	function checkExamStarted() {
+		if (window.XMLHttpRequest) {// IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else {// IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.open("GET.html", "checkPaperSectionStartedByAJAX?en=XY&sectionName=RAGA", true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				if (xmlhttp.responseText == "1") {
+					document.getElementById("msg").innerHTML = "You can start the next question paper section.";
+
+					var msg = "You can start the next question paper section.";
+					showDialog(msg);
+					//alert("msg");
+
+					document.getElementById("message").innerHTML = "";
+					blink = true;
+				} else {
+					document.getElementById("msg").innerHTML = "";
+					setTimeout(checkExamStarted, 5000);
+				}
+			}
+		};
+		xmlhttp.send();
+	}
+	var blink = false;
+	var blink_speed = 500;
+	var t = setInterval(function() {
+		if (blink) {
+			var ele = document.getElementById('msg');
+			ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+		}
+	}, blink_speed);
+</script>
+</head>
+<body onLoad="checkExamStarted()">
+	<div id="dialog" title="ALERT" style="display: none;">
+		<p id="dialog-text"></p>
+	</div>
+	<div id="page" class="shadow">
+		<div>
+			<table class="full_width" style="margin-top: 2px; border-collapse: collapse;">
+				<tbody><tr class="header_row">
+					<td class="name_htn">demo&nbsp;(demo)</td>
+					<td class="exam"><h3 id="header">Online-Examination&nbsp;<br />
+					</h3></td>
+					<td class="gap"><div id="rt" class="bold_text" style="padding: 2px 10px;"></div></td>
+					<td class="sid"><b class="greyborder" style="padding: 2px 10px;">Session Id : 0508</b></td>
+
+					<td class="photo" rowspan="2" bgcolor="#FFFFFF">
+							
+								<img class="photo" src="sectionEnd_ENG_files/PU1702CAL121XYA0001.jpg">
+							
+							
+						</td>
+				</tr>
+				<tr>
+					<td align="left" colspan="1" style="padding-left: 5px;">
+						<table style="border-collapse: collapse;">
+							<tbody><tr>
+								<td class="stats_padding" bgcolor="#A9F5D0"><img class="small" src="sectionEnd_ENG_files/tick.png">
+									<h5 id="answeredHeading">Answered: 20</h5></td>
+								<td class="stats_padding" bgcolor="#F6CECE">
+									<h5 id="unAnsweredHeading">Un-answered: 0</h5>
+								</td>
+								<td class="stats_padding" bgcolor="#A9D0F5"><img class="small" src="sectionEnd_ENG_files/question.png">
+									<h5 id="reviewHeading">Marked For Review: 0</h5></td>
+							</tr>
+						</tbody></table>
+					</td>
+					<td align="center"><div id="msg" align="center" style="color: green; font-weight: bold; font-size: 11pt;"></div></td>
+					<td></td>
+					<td align="center"></td>
+				</tr>
+			</tbody></table>
+		</div>
+		<hr>
+		<div class="block2Outer">
+			<div class="block2Inner">
+				<br> <br> <br> <b style="font-size: 10pt;">You have finished question paper section 'English'.</b> <br>
+				<br> <br>
+
+				<div align="center">
+					<table style="border: 0px solid grey; font-size: 9pt;">
+						<colgroup>
+							<col width="250px">
+							<col width="250px">
+						</colgroup>
+						<tbody>
+							<tr style="background-color: lightgrey;" height="30">
+								<th class="greyborder uppercase">Section Name</th>
+								<th class="greyborder uppercase">Section Status</th>
+							</tr>
+							
+								
+
+								
+									
+								
+								
+								<tr style="background-color: #A9F5D0;" height="30">
+									<td class="greyborder bold_text center">Physics</td>
+									<td class="greyborder bold_text center"> 
+											<img class="small hide" src="sectionEnd_ENG_files/tick.png">
+										</td>
+								</tr>
+							
+								
+
+								
+									
+								
+								
+								<tr style="background-color: #A9F5D0;" height="30">
+									<td class="greyborder bold_text center">Maths</td>
+									<td class="greyborder bold_text center"> 
+											<img class="small hide" src="sectionEnd_ENG_files/tick.png">
+										</td>
+								</tr>
+							
+								
+
+								
+									
+								
+								
+								<tr style="background-color: #A9F5D0;" height="30">
+									<td class="greyborder bold_text center">English</td>
+									<td class="greyborder bold_text center"> 
+											<img class="small hide" src="sectionEnd_ENG_files/tick.png">
+										</td>
+								</tr>
+							
+								
+
+								
+								
+									
+								
+								<tr style="background-color: #EEEDAF;" height="30">
+									<td class="greyborder bold_text center">RAGA</td>
+									<td class="greyborder bold_text center">
+											<input name="next" type="button" class="exam_btn" value=" Start Next Question Paper Section " onClick="javascript:checkExaminationStarted()">
+										 </td>
+								</tr>
+							
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div>
+		<hr>
+		<table style="border: 0px solid grey; width: 100%;">
+			<tbody><tr>
+				<td width="20%"></td>
+				<td align="center"><div id="message" class="message" style="font-weight: bold;">Question paper section has been submitted successfully.</div></td>
+				<td width="20%" align="right" style="font-size: 10pt;"></td>
+				<td width="10px"></td>
+			</tr>
+		</tbody></table>
+		<div class="hiddenForms">
+			<form id="frm" action="../raga/EXAM_RAGA.html" method="post">
+				<input type="hidden" name="_csrf" value="e4a38010-9c42-4b0e-8314-9a3761f815bd">
+				<input type="hidden" name="hallTicketNumber" value="PU1702CAL121XYA0001">
+				<input type="hidden" name="sessionId" value="9841">
+				<input type="hidden" name="paperCode" value="XY">
+				<input type="hidden" name="en" value="XY">
+			</form>
+		</div>
+	</div>
+</body>
+<!-- Mirrored from agnipathvayu.cdac.in/AV/AVMock/XY/sectionEnd_ENG.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Aug 2022 15:21:46 GMT -->
+</html>

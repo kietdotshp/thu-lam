@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+
+.block2Outer {
+	min-height: 70%;
+	height: 75%;
+	width: 100%;
+	background-color: white;
+	/* 	overflow: auto; */
+	overflow: hidden;
+}
+
+.block2Inner1 {
+	float: left;
+	width: 18%;
+}
+
+.block2Inner2 {
+	float: left;
+	width: 80%;
+	border: 1.00pt solid black;
+}
+
+#bottom {
+	position: relative;
+	width: 100%;
+}
+
+.bottomLine {
+	padding-top: 0px;
+	margin-top: 10px;
+}
+
+.hiddenForms {
+	float: left;
+	width: 100%;
+}
+
+table.myTable {
+	border: 1px inset;
+	border-collapse: collapse;
+	border-color: #999;
+	padding: 0px;
+}
+
+table.myTable td, table.myTable th {
+	border: 1px solid;
+	border-color: #999;
+	white-space: nowrap;
+}
+
+table.myTableQuestion {
+	border-right: 1px solid grey;
+	padding: 0px;
+}
+
+table.responseTable {
+	border: 1px solid grey;
+	padding: 0px;
+}
+
+.hide {
+	visibility: hidden;
+}
+
+a.nodeco {
+	color: black;
+	text-decoration: none;
+}

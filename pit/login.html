@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://127.0.0.1:8080/afrec-local/exam/login -->
+<html>
+  <!-- Mirrored from agnipathvayu.cdac.in/AV/AVMock/XX/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Aug 2022 11:45:15 GMT -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+
+    <meta http-equiv="default-style" content="text/css;" />
+    <title>EXAM</title>
+
+    <link rel="stylesheet" href="login_files/global.css" type="text/css" />
+    <link rel="stylesheet" href="login_files/common.css" type="text/css" />
+
+    <link rel="stylesheet" href="login_files/ui-dialog.css" type="text/css" />
+    <link rel="stylesheet" href="login_files/jquery-ui.css" type="text/css" />
+
+    <script src="login_files/global.js" type="text/javascript"></script>
+    <script src="login_files/jquery-1.12.4.js" type="text/javascript"></script>
+    <script src="login_files/jquery-ui.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+      document.oncontextmenu = function () {
+        return false;
+      };
+
+      // Disable Backspace
+      $(document).keydown(function (e) {
+        if (e.which == 8 && !$(e.target).is("input, textarea")) {
+          e.preventDefault();
+        }
+      });
+
+      function testConfirmDialog() {
+        // var confirmMsg = "Once examination is submitted, it cannot be restarted. Do you really want to submit the examination ?";
+        var confirmMsg =
+          "Once examination is submitted, you will not be able to login and continue with the current examination.<br />Do you really want to submit ?";
+        document.getElementById("confirm-dialog-text").innerHTML = confirmMsg;
+
+        $("#dialog-confirm").dialog({
+          resizable: false,
+          scrollable: true,
+          width: 600,
+          modal: true,
+          buttons: {
+            Cancel: function () {
+              $(this).dialog("close");
+            },
+            OK: function () {
+              $(this).dialog("close");
+            },
+          },
+        });
+        $("#dialog-confirm").dialog("option", "maxHeight", 400);
+      }
+
+      function validateForm() {
+        var hallTicketNumber = document.forms["frm"]["hallTicketNumber"].value;
+        var emailId = document.forms["frm"]["emailId"].value;
+
+        if (hallTicketNumber == "") {
+          var msg = "Hall ticket number can not be left blank.";
+          showDialog(msg);
+          //window.alert(msg);
+          return false;
+        }
+        if (emailId == "") {
+          var msg = "Email ID can not be left blank.";
+          showDialog(msg);
+          //window.alert(msg);
+          return false;
+        }
+        if (hallTicketNumber.length != 4) {
+          var msg = "Hall ticket number should be exactly 4 characters long.";
+          showDialog(msg);
+          //window.alert(msg);
+          return false;
+        }
+        var inputCode = 0;
+        inputCode += getInputCode(hallTicketNumber);
+        inputCode += getInputCode(emailId);
+        var hppCode = getHPPCode(origHPPCode, inputCode);
+        document.getElementById("hppCode").value = hppCode;
+
+        return true;
+      }
+
+      function setFocus() {
+        document.getElementById("hallTicketNumber").focus();
+        //testConfirmDialog();
+      }
+
+      function startOrLogin_() {
+        var name = window.name;
+
+        if (name.indexOf("CCAT_EXAM") == -1) {
+          window.open("open_student_login.html", "_self");
+        }
+      }
+    </script>
+  </head>
+
+  <body onLoad="setFocus();startOrLogin();">
+    <noscript>
+      <font color="red" size="+2"
+        >JavaScript is turned off in your web browser. Turn it on, then refresh
+        the page.</font
+      >
+    </noscript>
+	<div id="center">
+		<img src="./login.PNG" />
+	</div>
+	<div>
+		
+	</div>
+    <div id="dialog" title="ALERT" style="display: none">
+      <p id="dialog-text" align="justify"></p>
+    </div>
+    <div id="dialog-confirm" title="CONFIRMATION" style="display: none">
+      <p id="confirm-dialog-text" align="justify"></p>
+    </div>
+
+    <div id="page" class="page">
+      <span id="page_box" class="page_box"></span>
+      <div id="header_box" class="header_box">
+        <style>
+          .title_first_char {
+            font-size: 18pt;
+            font-weight: bold;
+            color: black;
+          }
+
+          .title_rest_chars {
+            font-size: 12pt;
+            font-weight: bold;
+            color: black;
+          }
+
+          .no_display {
+            display: none;
+          }
+        </style>
+        <!--  
+<h1 id="page_tag" class="page_tag">
+	<span class="title_first_char">A</span><span class="title_rest_chars">IR</span> <span class="title_first_char">F</span><span
+		class="title_rest_chars">ORCE</span> <span class="title_first_char">C</span><span class="title_rest_chars">OMMON</span>
+	<span class="title_first_char">A</span><span class="title_rest_chars">DMISSION</span> <span class="title_first_char">T</span><span
+		class="title_rest_chars">EST</span> </span>
+</h1>
+-->
+
+        <h1 id="page_tag" class="page_tag">
+          <span class="title_first_char">Sample one E</span
+          ><span class="title_rest_chars">XAM </span
+          ><span class="title_first_char">P</span
+          ><span class="title_rest_chars">IT</span>
+        </h1>
+
+        <h2 id="page_tag" class="page_tag">Online-Examination</h2>
+      </div>
+      <div id="navigation_box" class="navigation_box"></div>
+
+      <div id="full_page_body" class="full_page_body">
+        <h4
+          style="
+            background-color: #e9eef4;
+            border: 1px solid lightgrey;
+            padding: 2px;
+          "
+        >
+          <font color="black">EXAM LOGIN</font>
+        </h4>
+        <br />
+
+        <form id="frm" method="post" action="Instructions.html">
+          <input
+            type="hidden"
+            name="_csrf"
+            value="e4a38010-9c42-4b0e-8314-9a3761f815bd"
+          />
+          <input type="hidden" id="hppCode" name="hppCode" />
+          <table id="login_table">
+            <tbody>
+              <tr>
+                <td>
+                  <label>Roll Number <font color="red">*</font> </label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value="demo"
+                    readonly="true"
+                    name="hallTicketNumber"
+                    id="hallTicketNumber"
+                    class="textbox"
+                    maxlength="19"
+                    autocomplete="off"
+                    onpaste="return true"
+                    oncopy="return false"
+                    oncut="return false"
+                    onMouseOver="setTitle(this)"
+                  />
+                </td>
+              </tr>
+              <tr height="20"></tr>
+              <tr>
+                <td>
+                  <label>Password<font color="red">*</font> </label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value="demo"
+                    readonly="true"
+                    name="emailId"
+                    class="textbox"
+                    autocomplete="off"
+                    onpaste="return false"
+                    oncopy="return false"
+                    oncut="return false"
+                    onMouseOver="setTitle(this)"
+                  />
+                </td>
+              </tr>
+              <tr height="20"></tr>
+              <tr>
+                <td></td>
+                <td align="center">
+                  <input
+                    type="submit"
+                    value="Login"
+                    onClick="javascript:return validateForm();"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+
+        <br />
+        <br />
+        <div style="height: 30pt; font-weight: bold">
+          <font color="red"></font>
+        </div>
+        <div style="font-weight: bold">
+          <font color="green" id="pushMessage"></font>
+        </div>
+      </div>
+      <div class="required" id="required_up">* : Mandatory Field</div>
+      <div id="copyright">Copyright � 2022 - All Rights Reserved @ PIT</div>
+    </div>
+  </body>
+</html>
