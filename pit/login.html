@@ -99,154 +99,61 @@
     </script>
   </head>
 
-  <body onLoad="setFocus();startOrLogin();">
+  <body style="padding: 0; margin: 0" onLoad="setFocus();startOrLogin();">
     <noscript>
       <font color="red" size="+2"
         >JavaScript is turned off in your web browser. Turn it on, then refresh
         the page.</font
       >
     </noscript>
-	<div id="center">
-		<img src="./login.PNG" />
-	</div>
-	<div>
-		
-	</div>
-    <div id="dialog" title="ALERT" style="display: none">
-      <p id="dialog-text" align="justify"></p>
-    </div>
-    <div id="dialog-confirm" title="CONFIRMATION" style="display: none">
-      <p id="confirm-dialog-text" align="justify"></p>
-    </div>
-
-    <div id="page" class="page">
-      <span id="page_box" class="page_box"></span>
-      <div id="header_box" class="header_box">
-        <style>
-          .title_first_char {
-            font-size: 18pt;
-            font-weight: bold;
-            color: black;
-          }
-
-          .title_rest_chars {
-            font-size: 12pt;
-            font-weight: bold;
-            color: black;
-          }
-
-          .no_display {
-            display: none;
-          }
-        </style>
-        <!--  
-<h1 id="page_tag" class="page_tag">
-	<span class="title_first_char">A</span><span class="title_rest_chars">IR</span> <span class="title_first_char">F</span><span
-		class="title_rest_chars">ORCE</span> <span class="title_first_char">C</span><span class="title_rest_chars">OMMON</span>
-	<span class="title_first_char">A</span><span class="title_rest_chars">DMISSION</span> <span class="title_first_char">T</span><span
-		class="title_rest_chars">EST</span> </span>
-</h1>
--->
-
-        <h1 id="page_tag" class="page_tag">
-          <span class="title_first_char">Sample one E</span
-          ><span class="title_rest_chars">XAM </span
-          ><span class="title_first_char">P</span
-          ><span class="title_rest_chars">IT</span>
-        </h1>
-
-        <h2 id="page_tag" class="page_tag">Online-Examination</h2>
-      </div>
-      <div id="navigation_box" class="navigation_box"></div>
-
-      <div id="full_page_body" class="full_page_body">
-        <h4
-          style="
-            background-color: #e9eef4;
-            border: 1px solid lightgrey;
-            padding: 2px;
-          "
-        >
-          <font color="black">EXAM LOGIN</font>
-        </h4>
-        <br />
-
-        <form id="frm" method="post" action="Instructions.html">
-          <input
-            type="hidden"
-            name="_csrf"
-            value="e4a38010-9c42-4b0e-8314-9a3761f815bd"
-          />
-          <input type="hidden" id="hppCode" name="hppCode" />
-          <table id="login_table">
-            <tbody>
-              <tr>
-                <td>
-                  <label>Roll Number <font color="red">*</font> </label>
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value="demo"
-                    readonly="true"
-                    name="hallTicketNumber"
-                    id="hallTicketNumber"
-                    class="textbox"
-                    maxlength="19"
-                    autocomplete="off"
-                    onpaste="return true"
-                    oncopy="return false"
-                    oncut="return false"
-                    onMouseOver="setTitle(this)"
-                  />
-                </td>
-              </tr>
-              <tr height="20"></tr>
-              <tr>
-                <td>
-                  <label>Password<font color="red">*</font> </label>
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value="demo"
-                    readonly="true"
-                    name="emailId"
-                    class="textbox"
-                    autocomplete="off"
-                    onpaste="return false"
-                    oncopy="return false"
-                    oncut="return false"
-                    onMouseOver="setTitle(this)"
-                  />
-                </td>
-              </tr>
-              <tr height="20"></tr>
-              <tr>
-                <td></td>
-                <td align="center">
-                  <input
-                    type="submit"
-                    value="Login"
-                    onClick="javascript:return validateForm();"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
-
-        <br />
-        <br />
-        <div style="height: 30pt; font-weight: bold">
-          <font color="red"></font>
+    <header></header>
+    <main>
+      <div class="system-info">
+        <div class="system-name">
+          <div class="system-name_left">
+            <p style="font-size: 18px; margin: 0; color: #fff">System Name:</p>
+            <p style="font-size: 44px; margin: 0; color: #fff200">C001</p>
+            <p style="font-size: 15px; margin: 0; color: #fff">Kindly get in touch with the invigilator if there are any discrepancies in the Name and Photograph displayed on the screen or if the photograph is not yours</p>
+          </div>
+          <div class="system-name_right">
+             <p style="font-size: 18px; margin: 0; color: #fff">Candidate Name:</p>
+            <p style="font-size: 44px; margin: 0; color: #fff200">John Smith</p>
+            <p style="font-size: 15px; margin: 0; color: #fff">Subject: <span style="color: #fff200">Mock Exam</span> </p>
+          </div>
         </div>
-        <div style="font-weight: bold">
-          <font color="green" id="pushMessage"></font>
+        <div class="user-pic_wrapper">
+          <div class="user-pic"></div>
         </div>
       </div>
-      <div class="required" id="required_up">* : Mandatory Field</div>
-      <div id="copyright">Copyright � 2022 - All Rights Reserved @ PIT</div>
-    </div>
+
+      <div class="login-form">
+        <div class="login-title">Login</div>
+        <div class="login-input">
+          <div class="user-input">
+            <div class="user-logo"></div>
+            <input type="text" class="form-login-input">
+            <div class="user-keyboard-wrapper">
+              <img class="user-keyboard-input" src="./keyboard.png" alt="">
+            </div>
+          </div>
+
+          <div class="user-input">
+            <div class="password-logo"></div>
+            <input type="password" class="form-login-input">
+            <div class="user-keyboard-wrapper">
+              <img class="user-keyboard-input" src="./keyboard.png" alt="">
+            </div>
+          </div>
+
+          <!-- Button Sign in -->
+          <div style="flex: 1; display:flex; align-items: flex-end">
+            <button class="btn-login">Sign In</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer style="text-align: center;">
+      Version 17.05.21
+    </footer>
   </body>
 </html>
