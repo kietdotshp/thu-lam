@@ -212,11 +212,11 @@ header {
 	padding: 0 12px;
   }
   
-  @media (min-width: 992px) {
-	.login-form {
-	   max-width: 370px;
-	}
-  }	
+@media (min-width: 992px) {
+  .login-form {
+    max-width: 370px;
+  }
+}
 
 .login-title {
   background: #ddd;
