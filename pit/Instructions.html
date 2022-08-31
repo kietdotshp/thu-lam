@@ -157,7 +157,7 @@
           <img class="img-contain" src="./Instructions_files/INS_6.jpg" alt="">
         </div>
 
-        <div class="btn-wrapper">
+        <div style="justify-content: flex-end;" class="btn-wrapper">
           <div onclick="nextStep()" class="btn-change-step">Next</div>
         </div>
       </div>
@@ -183,8 +183,26 @@
           <img class="img-contain" src="./Instructions_files/INS_6.jpg" alt="">
         </div>
 
-        <div class="btn-wrapper">
+        <div style="padding-left: 12px;">
+          <span>Choose your default languague: </span>
+          <select>
+            <option value="0">-- Select --</option>
+            <option value="1">A</option>
+            <option value="2">B</option>
+          </select>
+        </div>
+
+        <p style="color: red; padding-left: 12px">Please note all questions will appear in your default language. This language can be changed for a particular question later on</p>
+
+        <div style="display: flex; padding-left: 12px; align-items: baseline; margin-bottom: 16px;">
+          <input id="checkbox" type="checkbox">
+          <label for="checkbox">I have read and understood the instructions. All computer hardware allotted to me are in proper working condition. I declare that I am not in possession of / not wearing / not carrying any prohibited gadget like mobile phone, bluetooth devices etc. /any prohibited material with me into the Examination Hall.I agree that in case of not adhering to the instructions, I shall be liable to be debarred from this Test and/or to disciplinary action, which may include ban from future Tests / Examinations </label>
+        </div>
+        <div style="padding-left: 12px;" class="btn-wrapper">
           <div onclick="previousStep()" class="btn-change-step">Previous</div>
+          <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+              <div class="btn-ready">I am ready to begin</div>
+          </div>
         </div>
       </div>
     </div>

@@ -230,13 +230,28 @@ img {
   display: flex;
   margin-bottom: 40px;
   margin-right: 20px;
-  justify-content: end;
 }
 
 .btn-change-step {
   padding: 12px 24px;
   display: inline-block;
   border: 1px solid;
+  cursor: pointer;
+}
+
+.btn-ready {
+  display: inline-block;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  background: #38aae9;
+  border: 0;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 2px;
+  color: white;
   cursor: pointer;
 }
 
