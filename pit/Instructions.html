@@ -125,7 +125,7 @@
 	// }, blink_speed);
 </script>
 </head>
-<body onLoad="checkExamStarted()">
+<body style="overflow: hidden;" onLoad="checkExamStarted()">
 	<header></header>
   <main>
     <div style="display: flex; flex-wrap: wrap;">
@@ -138,6 +138,20 @@
 
       <!-- Step 1 -->
       <div id="instruction-step-1" class="exam-instruction">
+        <div style="margin-bottom: 12px; position: fixed; left: 0; width: 80%;">
+          <div class="instruction-title">
+            Instructions
+          </div>
+        </div>
+        <div class="view-in" style="padding-left: 12px;">
+          <span style="margin-right: 4px">View in: </span>
+          <select>
+            <option value="0">-- Select --</option>
+            <option value="1">Assamese</option>
+            <option value="2">B</option>
+          </select>
+        </div>
+
         <div class="exam-instructiion_detail">
           <img class="img-contain" src="./Instructions_files/INS_1.jpg" alt="">
         </div>
@@ -164,6 +178,21 @@
 
       <!-- Step 2 -->
       <div id="instruction-step-2" class="exam-instruction">
+         <div style="margin-bottom: 12px; position: fixed; left: 0; width: 80%;">
+          <div class="instruction-title">
+            Other Important Instructions
+          </div>
+        </div>
+
+        <div class="view-in" style="padding-left: 12px;">
+          <span style="margin-right: 4px">View in: </span>
+          <select>
+            <option value="0">-- Select --</option>
+            <option value="1">Assamese</option>
+            <option value="2">B</option>
+          </select>
+        </div>
+
         <div class="exam-instructiion_detail">
           <img class="img-contain" src="./Instructions_files/INS_1.jpg" alt="">
         </div>
