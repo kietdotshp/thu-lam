@@ -182,26 +182,14 @@ header {
 .exam-instruction {
   width: 100%;
   order: 2;
-  max-height: 900px;
+  max-height: 612px;
   overflow: auto;
 }
 
 .user-info {
   width: 100%;
-  padding-top: 40px;
+  padding-top: 50px;
   order: 1;
-}
-
-@media (min-width: 992px) {
-  .user-info {
-    width: 20%;
-    order: 2;
-  }
-
-  .exam-instruction {
-    width: 80%;
-    order: 1;
-  }
 }
 
 .user-pic {
@@ -230,7 +218,7 @@ img {
 
 .btn-wrapper {
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-right: 20px;
 }
 
@@ -264,10 +252,16 @@ img {
 .view-in {
   margin-right: 20px;
   margin-bottom: 12px;
-  margin-top: 60px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.instruction-title-wrapper {
+  margin-bottom: 12px;
+  position: fixed;
+  left: 0;
+  width: 100%;
 }
 
 .instruction-title {
@@ -278,4 +272,28 @@ img {
   font-size: 20px;
   font-weight: bold;
   padding-left: 16px;
+}
+
+@media (min-width: 992px) {
+  .exam-instruction {
+    max-height: 900px;
+  }
+  
+  .user-info {
+    width: 20%;
+    order: 2;
+  }
+
+  .exam-instruction {
+    width: 80%;
+    order: 1;
+  }
+
+  .instruction-title-wrapper {
+    width: 80%;
+  }
+
+  .view-in {
+    margin-top: 60px;
+  }
 }

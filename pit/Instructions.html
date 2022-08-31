@@ -128,6 +128,12 @@
 <body style="overflow: hidden;" onLoad="checkExamStarted()">
 	<header></header>
   <main>
+    <div class="instruction-title-wrapper">
+      <div id="instruction-title" class="instruction-title">
+        Instructions
+      </div>
+    </div>
+
     <div style="display: flex; flex-wrap: wrap;">
       <div class="user-info">
         <div class="user-pic">
@@ -138,11 +144,6 @@
 
       <!-- Step 1 -->
       <div id="instruction-step-1" class="exam-instruction">
-        <div style="margin-bottom: 12px; position: fixed; left: 0; width: 80%;">
-          <div class="instruction-title">
-            Instructions
-          </div>
-        </div>
         <div class="view-in" style="padding-left: 12px;">
           <span style="margin-right: 4px">View in: </span>
           <select>
@@ -178,12 +179,6 @@
 
       <!-- Step 2 -->
       <div id="instruction-step-2" class="exam-instruction">
-         <div style="margin-bottom: 12px; position: fixed; left: 0; width: 80%;">
-          <div class="instruction-title">
-            Other Important Instructions
-          </div>
-        </div>
-
         <div class="view-in" style="padding-left: 12px;">
           <span style="margin-right: 4px">View in: </span>
           <select>
@@ -241,18 +236,20 @@
   </footer>
 
   <script>
+    var step_1 = document.getElementById('instruction-step-1')
+    var step_2 = document.getElementById('instruction-step-2')
+    var title = document.getElementById('instruction-title')
+
     function nextStep() {
-      var step_1 = document.getElementById('instruction-step-1')
-      var step_2 = document.getElementById('instruction-step-2')
       step_1.style.display = 'none'
       step_2.style.display = 'block'
+      title.innerHTML = 'Other Important Instructions'
     }
 
     function previousStep() {
-      var step_1 = document.getElementById('instruction-step-1')
-      var step_2 = document.getElementById('instruction-step-2')
       step_1.style.display = 'block'
       step_2.style.display = 'none'
+      title.innerHTML = 'Instructions'
     }
   </script>
 </body>
