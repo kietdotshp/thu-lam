@@ -119,88 +119,94 @@
 		xmlhttp.send();
 	}
 	var blink_speed = 500;
-	var t = setInterval(function() {
-		var ele = document.getElementById('msg');
-		ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
-	}, blink_speed);
+	// var t = setInterval(function() {
+	// 	var ele = document.getElementById('msg');
+	// 	ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+	// }, blink_speed);
 </script>
 </head>
 <body onLoad="checkExamStarted()">
-	
-	<div id="dialog" title="ALERT" style="display: none;">
-		<p id="dialog-text"></p>
-	</div>
-
-    <div id="page" class="shadow">
-      <div>
-        <table class="full_width" style="margin-top: 2px; border-collapse: collapse;">
-          <tbody>
-            <tr class="header_row">
-              <td class="name_htn">Demo&nbsp;(demo)</td>
-              <td class="exam"><h3 id="header">Online-Examination&nbsp;</h3>
-                <h3>&nbsp;</h3>
-                <h3><br />
-                  </h3></td>
-              <td class="gap">&nbsp;</td>
-              <td class="sid">&nbsp;</td>
-              <td class="photo" rowspan="2" bgcolor="#FFFFFF"><img class="photo" src="Instructions_files/PU1702CAL121XXA0001.jpg"> </td>
-            </tr>
-            <tr height="41px">
-              <td colspan="4" align="center"><div id="msg" align="center" style="color: green; font-weight: bold; font-size: 11pt;">start examination.</div></td>
-            </tr>
-          </tbody>
-        </table>
+	<header></header>
+  <main>
+    <div style="display: flex; flex-wrap: wrap;">
+      <div class="user-info">
+        <div class="user-pic">
+          <img class="img-contain" src="./Instructions_files/PU1702CAL121XXA0001.jpg" alt="">
+        </div>
+        <p style="text-align: center; font-size: 20px; font-weight: 700;">John Smith</p>
       </div>
-      <hr>
-      <div class="block2Outer">
-        <div class="block2Inner">
-          <center>
-            <table class="qp_instructions">
-              <tbody>
-                <tr>
-                  <td><div> <img src="Instructions_files/INS_1.jpg" alt="Reload Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"> </div></td>
-                </tr>
-                <tr>
-                  <td><div> <img src="Instructions_files/INS_2.jpg" alt="Reload Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"> </div></td>
-                </tr>
-                <tr>
-                  <td><div> <img src="Instructions_files/INS_3.jpg" alt="Reload Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"> </div></td>
-                </tr>
-                <tr>
-                  <td><div> <img src="Instructions_files/INS_4.jpg" alt="Reload Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"> </div></td>
-                </tr>
-                <tr>
-                  <td><div> <img src="Instructions_files/INS_5.jpg" alt="Reload Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"> </div></td>
-                </tr>
-                <tr>
-                  <td><div> <img src="Instructions_files/INS_6.jpg" alt="Reload Instruction Image" onClick="reloadImage(this)" onload="imageLoaded(this.src)"> </div></td>
-                </tr>
-              </tbody>
-            </table>
-          </center>
+
+      <!-- Step 1 -->
+      <div id="instruction-step-1" class="exam-instruction">
+        <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_1.jpg" alt="">
+        </div>
+         <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_2.jpg" alt="">
+        </div>
+          <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_3.jpg" alt="">
+        </div>
+          <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_4.jpg" alt="">
+        </div>
+          <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_5.jpg" alt="">
+        </div>
+        <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_6.jpg" alt="">
+        </div>
+
+        <div class="btn-wrapper">
+          <div onclick="nextStep()" class="btn-change-step">Next</div>
         </div>
       </div>
-      <hr>
-      <table align="right" style="border: 2px solid #06B2CD; margin-right: 5px;">
-        <tbody>
-          <tr>
-            <td><input name="checkbox" type="checkbox" id="read_instructions_chk" style="height: 16px; width: 16px;"></td>
-            <td><img style="height: 40px;" src="Instructions_files/read_instructions.jpg"></td>
-            <td width="50px"></td>
-            <td style="font-size: 11pt;"><input name="next" type="button" class="exam_btn" value=" Start Examination " onClick="javascript:checkExaminationStarted()"></td>
-            <td width="10px"></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="hiddenForms">
-        <form id="frm" action="phy/EXAM_PHY.html" method="post">
-          <input type="hidden" name="_csrf" value="e4a38010-9c42-4b0e-8314-9a3761f815bd">
-          <input type="hidden" name="hallTicketNumber" value="PU1702CAL121XXA0001">
-          <input type="hidden" name="sessionId" value="0325">
-          <input type="hidden" name="paperCode" value="XY">
-          <input type="hidden" name="en" value="XY">
-        </form>
+
+      <!-- Step 2 -->
+      <div id="instruction-step-2" class="exam-instruction">
+        <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_1.jpg" alt="">
+        </div>
+         <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_2.jpg" alt="">
+        </div>
+          <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_3.jpg" alt="">
+        </div>
+          <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_4.jpg" alt="">
+        </div>
+          <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_5.jpg" alt="">
+        </div>
+        <div class="exam-instructiion_detail">
+          <img class="img-contain" src="./Instructions_files/INS_6.jpg" alt="">
+        </div>
+
+        <div class="btn-wrapper">
+          <div onclick="previousStep()" class="btn-change-step">Previous</div>
+        </div>
       </div>
     </div>
+  </main>
+	<footer style="text-align: center;">
+      Version 17.05.21
+  </footer>
+
+  <script>
+    function nextStep() {
+      var step_1 = document.getElementById('instruction-step-1')
+      var step_2 = document.getElementById('instruction-step-2')
+      step_1.style.display = 'none'
+      step_2.style.display = 'block'
+    }
+
+    function previousStep() {
+      var step_1 = document.getElementById('instruction-step-1')
+      var step_2 = document.getElementById('instruction-step-2')
+      step_1.style.display = 'block'
+      step_2.style.display = 'none'
+    }
+  </script>
 </body>
 </html>
