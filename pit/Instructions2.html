@@ -130,7 +130,7 @@
   <main>
     <div class="instruction-title-wrapper">
       <div id="instruction-title" class="instruction-title">
-        Instructions
+        Other Important Instructions
       </div>
     </div>
 
@@ -142,8 +142,8 @@
         <p style="text-align: center; font-size: 20px; font-weight: 700;">John Smith</p>
       </div>
 
-      <!-- Step 1 -->
-      <div id="instruction-step-1" class="exam-instruction">
+      <!-- Step 2 -->
+      <div id="instruction-step-2" class="exam-instruction">
         <div class="view-in" style="padding-left: 12px;">
           <span style="margin-right: 4px">View in: </span>
           <select>
@@ -153,7 +153,7 @@
           </select>
         </div>
 
-        <div class="exam-instruction_wrapper">
+        <div class="exam-instruction_wrapper step-2">
           <div class="exam-instructiion_detail">
             <img class="img-contain" src="./Instructions_files/INS_1.jpg" alt="">
           </div>
@@ -174,8 +174,26 @@
           </div>
         </div>
 
-        <div style="justify-content: flex-end;" class="btn-wrapper">
-          <div onclick="nextStep()" class="btn-change-step">Next</div>
+        <div style="padding: 0 12px;">
+          <span>Choose your default languague: </span>
+          <select>
+            <option value="0">-- Select --</option>
+            <option value="1">A</option>
+            <option value="2">B</option>
+          </select>
+        </div>
+
+        <p style="color: red; padding: 0 12px;">Please note all questions will appear in your default language. This language can be changed for a particular question later on</p>
+
+        <div style="display: flex; padding: 0 12px;; align-items: baseline; margin-bottom: 16px;">
+          <input id="checkbox" type="checkbox">
+          <label for="checkbox">I have read and understood the instructions. All computer hardware allotted to me are in proper working condition. I declare that I am not in possession of / not wearing / not carrying any prohibited gadget like mobile phone, bluetooth devices etc. /any prohibited material with me into the Examination Hall.I agree that in case of not adhering to the instructions, I shall be liable to be debarred from this Test and/or to disciplinary action, which may include ban from future Tests / Examinations </label>
+        </div>
+        <div style="padding: 0 12px; margin-bottom: 40px;" class="btn-wrapper">
+          <div onclick="previousStep()" class="btn-change-step">Previous</div>
+          <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+              <div class="btn-ready">I am ready to begin</div>
+          </div>
         </div>
       </div>
     </div>
@@ -185,8 +203,8 @@
   </footer>
 
   <script>
-    function nextStep() {
-      location.href = './Instructions2.html'
+    function previousStep() {
+      location.href = './Instructions.html'
     }
   </script>
 </body>
